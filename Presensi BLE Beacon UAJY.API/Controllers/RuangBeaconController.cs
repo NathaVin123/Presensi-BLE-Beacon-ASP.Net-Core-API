@@ -9,22 +9,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
     [Serializable]
     [Route("api/[controller]")]
     [ApiController]
-    public class RiwayatMhsController : ControllerBase
+    public class RuangBeaconController : ControllerBase
     {
-        private RiwayatMhsBM bm;
+        private RuangBeaconBM bm;
 
-        public RiwayatMhsController()
+        public RuangBeaconController()
         {
-            bm = new RiwayatMhsBM();
+            bm = new RuangBeaconBM();
         }
 
         [AllowAnonymous]
-        [HttpPost("PostGetAll")]
-        public ActionResult RiwayatMhs([FromForm] UserRiwayatMhs urm)
+        public ActionResult Get()
         {
             try
             {
-                var data = bm.RiwayatMhs(urm.NPM, urm.SEMESTER);
+                var data = bm.RuangBeacon();
 
                 return Ok(data);
             }

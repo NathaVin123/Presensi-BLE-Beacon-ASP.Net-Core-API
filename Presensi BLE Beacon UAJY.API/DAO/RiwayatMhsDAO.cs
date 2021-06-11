@@ -10,7 +10,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 {
     public class RiwayatMhsDAO
     {
-        public dynamic GetRiwayatMhs(string npm)
+        public dynamic GetRiwayatMhs(string npm, string semester)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -24,13 +24,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                                sia.STATUS,
 	                                sia.TGL_IN,
 	                                sia.TGL_OUT,
-	                                sia.TGL_VERIFIKASI
+	                                sia.TGL_VERIFIKASI,
+									mk.SEMESTER
                                 FROM SIATMAX_121212.dbo.tbl_kelas kls
 	                                JOIN SIATMA_UAJY.dbo.TBL_PRESENSI_MHS sia ON kls.ID_KELAS = sia.ID_Kelas
-                                WHERE sia.NPM = @npm
+									JOIN dbo.tbl_matakuliah mk ON kls.ID_MK = mk.ID_MK
+	                                JOIN dbo.REF_HARI hr ON kls.ID_HARI1 = hr.ID_HARI
+	                                JOIN dbo.REF_SESI si ON kls.ID_SESI_KULIAH1 = si.ID_SESI
+	                                JOIN dbo.mst_dosen ds ON kls.NPP_DOSEN1 = ds.NPP
+                                WHERE (sia.NPM = @npm) AND (mk.SEMESTER = @semester) AND TGL_IN IS NOT NULL
                                 ORDER BY TGL_IN ASC";
 
-                var param = new { NPM = npm };
+                var param = new { NPM = npm, SEMESTER = semester };
                 var data = conn.Query<dynamic>(query, param).ToList();
 
                 return data;

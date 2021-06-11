@@ -19,12 +19,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("JadwalMhs")]
-        public ActionResult JadwalMhs([FromForm] UserLoginMhs ul)
+        [HttpPost("PostGetAll")]
+        public ActionResult JadwalMhs([FromForm] UserJadwalMhs ujm)
         {
             try
             {
-                var data = bm.JadwalMhs(ul.NPM);
+                var data = bm.JadwalMhs(ujm.NPM, ujm.SEMESTER);
 
                 return Ok(data);
             }

@@ -14,9 +14,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
-        public OutPutApi JadwalMhs(string npm)
+        public OutPutApi JadwalMhs(string npm, string semester)
         {
-            var data = dao.GetJadwalMhs(npm);
+            var data = dao.GetJadwalMhs(npm, semester);
 
             output.data = data;
 

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Presensi_BLE_Beacon_UAJY.API.DAO
 {
-    public class KelasBeaconDAO
+    public class RuangBeaconDAO
     {
         public dynamic GetScanningKelasBeacon()
         {
