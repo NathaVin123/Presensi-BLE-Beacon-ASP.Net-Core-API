@@ -19,7 +19,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("PostGetAll")]
+        [HttpGet("PostGetAll")]
         public ActionResult RiwayatMhs([FromForm] UserRiwayatMhs urm)
         {
             try

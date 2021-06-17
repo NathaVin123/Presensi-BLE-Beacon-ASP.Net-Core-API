@@ -18,7 +18,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"SELECT
-		                                m.NPM,
 		                                kls.KODE_MK,
 		                                kls.NAMA_MK,
 		                                kls.KELAS,

@@ -46,8 +46,10 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 {
                     string query = @"SELECT m.NPM, m.NAMA_MHS
                                     FROM dbo.MST_MHS_AKTIF m
-                                    WHERE m.KD_STATUS_MHS ='A'";
-                    var data = conn.Query<dynamic>(query, new { npm = npm }).ToList();
+                                    WHERE (m.NPM = @NPM) AND m.KD_STATUS_MHS ='A'";
+
+                    var param = new { NPM = npm };
+                    var data = conn.QuerySingleOrDefault<dynamic>(query, param).ToList();
 
                     output.data = data;
 
