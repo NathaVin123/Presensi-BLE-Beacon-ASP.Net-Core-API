@@ -20,6 +20,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 string query = @"SELECT
 	                                sia.ID_Kelas,
 	                                kls.NAMA_MK,
+									kls.KELAS,
 	                                sia.PERTEMUAN_KE,
 	                                sia.STATUS,
 	                                sia.TGL_IN,
@@ -32,7 +33,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                                JOIN dbo.REF_HARI hr ON kls.ID_HARI1 = hr.ID_HARI
 	                                JOIN dbo.REF_SESI si ON kls.ID_SESI_KULIAH1 = si.ID_SESI
 	                                JOIN dbo.mst_dosen ds ON kls.NPP_DOSEN1 = ds.NPP
-                                WHERE (sia.NPM = @npm) AND (mk.SEMESTER = @semester) AND TGL_IN IS NOT NULL
+                                WHERE (sia.NPM = @npm) AND (mk.SEMESTER = @semester)
                                 ORDER BY TGL_IN ASC";
 
                 var param = new { NPM = npm, SEMESTER = semester };
