@@ -43,10 +43,26 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
+                // string query = @"SELECT TOP (1)
+	            //                     m.NPM,
+	            //                     m.NAMA_MHS,
+				// 					foto.foto,
+	            //                     m.TMP_LAHIR,
+	            //                     m.TGL_LAHIR,
+	            //                     m.ALAMAT,
+	            //                     f.FAKULTAS,
+	            //                     p.PRODI,
+	            //                     d.NAMA_DOSEN_LENGKAP AS 'DSN_PEMBIMBING_AKADEMIK'
+                //                 FROM dbo.MST_MHS_AKTIF m
+	            //                     JOIN dbo.REF_PRODI p ON m.ID_PRODI = p.ID_PRODI
+	            //                     JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
+	            //                     JOIN dbo.MST_DOSEN d ON m.NPP_PEMBIMBING_AKADEMIK = d.NPP
+				// 					JOIN dbo.mst_mhs_foto foto ON m.NPM = foto.npm
+                //                 WHERE (m.NPM = @npm)";
+
                 string query = @"SELECT TOP (1)
 	                                m.NPM,
 	                                m.NAMA_MHS,
-									foto.foto,
 	                                m.TMP_LAHIR,
 	                                m.TGL_LAHIR,
 	                                m.ALAMAT,
@@ -112,10 +128,24 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT TOP (1)
+                // string query = @"SELECT TOP (1)
+	            //                     d.NPP,
+	            //                     d.NAMA_DOSEN_LENGKAP,
+				// 					k.FILE_FOTO,
+	            //                     d.TEMPAT_LAHIR,
+	            //                     d.TGL_LAHIR,
+	            //                     k.PASSWORD,
+	            //                     d.KD_STATUS_DOSEN,
+	            //                     p.PRODI,
+	            //                     f.FAKULTAS
+                //                 FROM dbo.MST_DOSEN d
+	            //                     JOIN simka.MST_KARYAWAN k ON D.NPP = K.NPP
+	            //                     JOIN dbo.REF_PRODI p ON d.ID_PRODI = p.ID_PRODI
+	            //                     JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
+                //                 WHERE (D.NPP = @npp)";
+                 string query = @"SELECT TOP (1)
 	                                d.NPP,
 	                                d.NAMA_DOSEN_LENGKAP,
-									k.FILE_FOTO,
 	                                d.TEMPAT_LAHIR,
 	                                d.TGL_LAHIR,
 	                                k.PASSWORD,

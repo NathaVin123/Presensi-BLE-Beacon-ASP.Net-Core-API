@@ -45,53 +45,5 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
-
-        public dynamic GetPresensiKelasBeacon()
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"";
-
-                //var param = new { NPM = npm };
-                var data = conn.Query<dynamic>(query).ToList();
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic PostPresensiKelasBeacon()
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"";
-
-                //var param = new { NPM = npm };
-                var data = conn.Query<dynamic>(query).ToList();
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
     }
 }
