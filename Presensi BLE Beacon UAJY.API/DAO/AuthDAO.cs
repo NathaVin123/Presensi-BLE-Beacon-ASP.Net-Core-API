@@ -102,8 +102,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                                     d.NAMA_DOSEN_LENGKAP,
                                     k.PASSWORD,
                                     d.KD_STATUS_DOSEN
-                                FROM dbo.MST_DOSEN d
-                                    JOIN simka.MST_KARYAWAN k ON d.NPP = k.NPP
+                                FROM MST_DOSEN d
+                                    JOIN SIATMAX_121212.simka.MST_KARYAWAN k ON d.NPP = k.NPP
                                 WHERE (d.NPP = @npp) AND d.KD_STATUS_DOSEN ='A'";
 
                 var param = new { npp = npp };
@@ -153,7 +153,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                                p.PRODI,
 	                                f.FAKULTAS
                                 FROM dbo.MST_DOSEN d
-	                                JOIN simka.MST_KARYAWAN k ON D.NPP = K.NPP
+	                                JOIN SIATMAX_121212.simka.MST_KARYAWAN k ON D.NPP = K.NPP
 	                                JOIN dbo.REF_PRODI p ON d.ID_PRODI = p.ID_PRODI
 	                                JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
                                 WHERE (D.NPP = @npp)";

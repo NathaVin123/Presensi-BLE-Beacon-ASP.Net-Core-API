@@ -23,12 +23,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 		                            r.RUANG,
 		                            b.PROXIMITY_UUID,
 		                            b.NAMA_DEVICE
-                              FROM [SIATMAX_121212].[dbo].[tbl_kelas] kls
-	                            JOIN mst_ruang_2 r ON kls.RUANG1 = r.RUANG
+                              FROM  TBL_KELAS kls
+	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
 	                            JOIN REF_HARI h ON kls.ID_HARI1 = h.ID_HARI
 	                            JOIN REF_SESI s ON kls.ID_SESI_KULIAH1 = s.ID_SESI
-	                            JOIN mst_dosen d ON kls.NPP_DOSEN1 = d.NPP
-	                            JOIN REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+	                            JOIN MST_DOSEN d ON kls.NPP_DOSEN1 = d.NPP
+	                            JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
                               WHERE r.ID_BEACON IS NOT NULL";
 
                 //var param = new { NPM = npm };
