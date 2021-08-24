@@ -137,5 +137,48 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
 
             return output;
         }
+
+        public OutPutApi LoginAdm(string npp, string password)
+        {
+            var ul = dao.GetLoginAdm(npp);
+            if (ul != null)
+            {
+                if (password == ul.PASSWORD)
+                {
+                        var data = dao.GetProfileAdm(npp);
+
+                        var tokenHandler = new JwtSecurityTokenHandler();
+                        var key = Encoding.ASCII.GetBytes(AppSettings.secret);
+                        var tokenDescriptor = new SecurityTokenDescriptor
+                        {
+                            Subject = new ClaimsIdentity(new Claim[]
+                            {
+                                        new Claim(ClaimTypes.Name, data.NAMA_LENGKAP_GELAR),
+                                        new Claim("NPP", data.NPP)
+                            }),
+                            Expires = DateTime.UtcNow.AddDays(7),
+                            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                        };
+                        var token = tokenHandler.CreateToken(tokenDescriptor);
+                        var gentoken = tokenHandler.WriteToken(token);
+
+                        data.token = gentoken;
+
+                        output.data = data;
+                }
+                else
+                {
+                    output.error = "Gagal Login! Password salah";
+                    output.data = new { };
+                }
+            }
+            else
+            {
+                output.error = "Gagal Login! NPP Salah.";
+                output.data = new { };
+            }
+
+            return output;
+        }
     }
 }

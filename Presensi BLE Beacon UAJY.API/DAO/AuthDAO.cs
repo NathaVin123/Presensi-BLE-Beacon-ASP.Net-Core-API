@@ -172,5 +172,60 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+        public dynamic GetLoginAdm(string npp)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+                string query = @"SELECT TOP (1) 
+                                    NPP,
+                                    PASSWORD
+                                FROM SIATMAX_121212.simka.MST_KARYAWAN
+                                WHERE (NPP = @npp)";
+
+                var param = new { npp = npp };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic GetProfileAdm(string npp)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+                 string query = @"SELECT TOP (1) 
+                                    NPP,
+                                    NAMA_LENGKAP_GELAR,
+                                    PASSWORD
+                                FROM SIATMAX_121212.simka.MST_KARYAWAN
+                                WHERE (NPP = @npp)";
+
+                var param = new { NPP = npp };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+        
     }
 }

@@ -49,5 +49,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("LoginAdm")]
+        public ActionResult LoginAdm([FromForm] UserLoginAdm ul)
+        {
+            try
+            {
+                var data = bm.LoginAdm(ul.NPP, ul.PASSWORD);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
