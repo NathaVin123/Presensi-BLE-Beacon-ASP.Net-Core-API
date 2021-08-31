@@ -31,7 +31,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                            JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
                               WHERE r.ID_BEACON IS NOT NULL";
 
-                //var param = new { NPM = npm };
                 var data = conn.Query<dynamic>(query).ToList();
 
                 return data;
@@ -45,5 +44,56 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+
+        public dynamic TambahBeacon(string uuid, string nama_device, float jarak_min)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMAX_121212.dbo.REF_BEACON 
+                                    (PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC) 
+                                    VALUES 
+                                    (@uuid, @nama_device, @jarak_min)";
+
+                var param = new { UUID = uuid,  NAMA_DEVICE = nama_device, JARAK_MIN = jarak_min};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic GetListBeacon()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC FROM SIATMAX_121212.dbo.REF_BEACON";
+
+                var data = conn.Query<dynamic>(query).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+        
     }
 }

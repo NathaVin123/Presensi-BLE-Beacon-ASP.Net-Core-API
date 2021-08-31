@@ -32,5 +32,37 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("Tambah")]
+        public ActionResult TambahBcn([FromForm] UserTambahBeacon utb)
+        {
+            try
+            {
+                var data = bm.TambahBeacon(utb.UUID, utb.NAMA_DEVICE, utb.JARAK_MIN);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("Tampil")]
+        public ActionResult ListBcn()
+        {
+            try
+            {
+                var data = bm.ListBeacon();
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
