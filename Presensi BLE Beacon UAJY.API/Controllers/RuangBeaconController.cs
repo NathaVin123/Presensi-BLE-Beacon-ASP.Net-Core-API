@@ -64,5 +64,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpDelete("Hapus")]
+        public ActionResult DeleteBcn([FromForm] UserDeleteBeacon uhb)
+        {
+            try
+            {
+                var data = bm.DeleteBeacon(uhb.UUID);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
