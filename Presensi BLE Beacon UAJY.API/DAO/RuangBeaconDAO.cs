@@ -79,7 +79,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC FROM SIATMAX_121212.dbo.REF_BEACON";
+                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC FROM SIATMAX_121212.dbo.REF_BEACON ORDER BY JARAK_MIN_DEC DESC";
 
                 var data = conn.Query<dynamic>(query).ToList();
 
@@ -95,16 +95,17 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdateBeacon()
+        public dynamic UpdateBeacon(string uuid, string nama_device, float jarak_min)
         {
             SqlConnection conn = new SqlConnection();
             try
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"";
+                string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET NAMA_DEVICE = @nama_device, JARAK_MIN_DEC = @jarak_min WHERE PROXIMITY_UUID = @uuid";
 
-                var data = conn.Query<dynamic>(query).ToList();
+                var param = new { UUID = uuid, NAMA_DEVICE = nama_device, JARAK_MIN = jarak_min };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
             }

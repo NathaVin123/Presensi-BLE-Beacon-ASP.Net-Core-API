@@ -45,6 +45,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        public OutPutApi UpdateBeacon(string uuid, string nama_device, float jarak_min)
+        {
+            var data = dao.UpdateBeacon(uuid, nama_device, jarak_min);
+
+            output.data = data;
+
+            return output;
+        }
+
         public OutPutApi DeleteBeacon(string uuid)
         {
             var data = dao.DeleteBcn(uuid);
