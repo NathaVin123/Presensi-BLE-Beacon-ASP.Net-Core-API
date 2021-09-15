@@ -96,5 +96,53 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpGet("TampilRuangan")]
+        public ActionResult ListRngn()
+        {
+            try
+            {
+                var data = bm.ListRuangan();
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("TampilDetailRuangan")]
+        public ActionResult ListDetailRngn()
+        {
+            try
+            {
+                var data = bm.ListDetailRuangan();
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("UbahRuangBeacon")]
+        public ActionResult UpdateRuangBcn([FromForm] UserUpdateRuangBeacon uurb)
+        {
+            try
+            {
+                var data = bm.UpdateRuangBeacon(uurb.RUANG, uurb.NAMA_DEVICE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -79,7 +79,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC FROM SIATMAX_121212.dbo.REF_BEACON ORDER BY JARAK_MIN_DEC DESC";
+                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC 
+                                FROM SIATMAX_121212.dbo.REF_BEACON 
+                                ORDER BY JARAK_MIN_DEC DESC";
 
                 var data = conn.Query<dynamic>(query).ToList();
 
@@ -102,7 +104,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET NAMA_DEVICE = @nama_device, JARAK_MIN_DEC = @jarak_min WHERE PROXIMITY_UUID = @uuid";
+                string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET NAMA_DEVICE = @nama_device, JARAK_MIN_DEC = @jarak_min 
+                                WHERE PROXIMITY_UUID = @uuid";
 
                 var param = new { UUID = uuid, NAMA_DEVICE = nama_device, JARAK_MIN = jarak_min };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
@@ -129,6 +132,84 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 string query = @"DELETE FROM SIATMAX_121212.dbo.REF_BEACON WHERE PROXIMITY_UUID = @uuid";
 
                 var param = new { UUID = uuid };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic GetListRuangan()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI FROM MST_RUANG r 
+                                    JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
+                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI";
+
+                var data = conn.Query<dynamic>(query).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic GetListDetailRuangan()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI, b.NAMA_DEVICE, b.PROXIMITY_UUID, b.JARAK_MIN_DEC FROM MST_RUANG r 
+                                    JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
+                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI 
+                                    JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON";
+
+                var data = conn.Query<dynamic>(query).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateRuangBeacon(string ruang, string nama_device)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"UPDATE MST_RUANG SET ID_BEACON = 
+                                (SELECT ID_BEACON FROM SIATMAX_121212.dbo.REF_BEACON WHERE NAMA_DEVICE = @nama_device)
+                                FROM MST_RUANG 
+                                WHERE RUANG = @ruang";
+
+                var param = new { RUANG = ruang, NAMA_DEVICE = nama_device };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
