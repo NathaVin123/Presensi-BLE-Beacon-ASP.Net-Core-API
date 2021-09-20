@@ -33,5 +33,37 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpPut("BukaPresensiDosen")]
+        public ActionResult BukaKelasDsn([FromForm] UserBukaPresensiDosen ubpd)
+        {
+            try
+            {
+                var data = bm.DosenBukaPresensi(ubpd.ID_KELAS, ubpd.IS_BUKA_PRESENSI);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostGetListPesertaKelas")]
+        public ActionResult ListKelasMhs([FromForm] UserListPesertaKelas ulpk)
+        {
+            try
+            {
+                var data = bm.ListPesertaKelasDsn(ulpk.ID_KELAS);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

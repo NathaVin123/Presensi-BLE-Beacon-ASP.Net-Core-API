@@ -223,6 +223,5 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
-        
     }
 }

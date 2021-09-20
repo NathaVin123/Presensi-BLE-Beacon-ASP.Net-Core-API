@@ -40,7 +40,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 		                            b.PROXIMITY_UUID,
 		                            b.NAMA_DEVICE,
                                     b.JARAK_MIN_DEC,
-									kls.KAPASITAS_KELAS
+									kls.KAPASITAS_KELAS,
+                                    kls.IS_BUKA_PRESENSI
                               FROM  TBL_KELAS kls
 	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
 	                            FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
@@ -95,5 +96,56 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+
+        public dynamic DosenBukaPresensi(int idkelas, int bukapresensi)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"UPDATE TBL_KELAS SET IS_BUKA_PRESENSI = @bukapresensi WHERE ID_KELAS = @idkelas";
+
+                var param = new { IDKELAS = idkelas, BUKAPRESENSI = bukapresensi };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+        public dynamic GetListPesertaKelas(int idkelas)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"SELECT	mhs.NPM, mhs.NAMA_MHS FROM MST_MHS_AKTIF mhs 
+                                JOIN TBL_KRS krs ON mhs.NPM = krs.NPM 
+                                JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS 
+                                WHERE kls.ID_KELAS = @idkelas";
+
+                var param = new { IDKELAS = idkelas };
+                var data = conn.Query<dynamic>(query, param).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+        
     }
 }
