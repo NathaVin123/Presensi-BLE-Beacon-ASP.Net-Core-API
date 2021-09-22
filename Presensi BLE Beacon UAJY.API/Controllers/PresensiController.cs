@@ -24,7 +24,23 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.ListKelasDsn(ulkd.NPP, ulkd.SEMESTER);
+                var data = bm.ListKelasDsn(ulkd.NPP);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostGetListKelasMhs")]
+        public ActionResult ListKelasMhs([FromForm] UserListKelasMhs ulkm)
+        {
+            try
+            {
+                var data = bm.ListKelasMhs(ulkm.NPM);
 
                 return Ok(data);
             }

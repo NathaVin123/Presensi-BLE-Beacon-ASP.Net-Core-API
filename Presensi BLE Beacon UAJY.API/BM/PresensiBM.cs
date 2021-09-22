@@ -14,9 +14,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
-        public OutPutApi ListKelasDsn(string npp, string semester)
+        public OutPutApi ListKelasDsn(string npp)
         {
-            var data = dao.GetListKelasDosen(npp, semester);
+            var data = dao.GetListKelasDosen(npp);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi ListKelasMhs(string npm)
+        {
+            var data = dao.GetListKelasMahasiswa(npm);
 
             output.data = data;
 
