@@ -81,5 +81,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("PostInsertPresensiDosen")]
+        public ActionResult InsertDsn([FromForm] UserInsertPresensiDosen uipd)
+        {
+            try
+            {
+                var data = bm.InsertPresensiDosen(uipd.ID_Kelas, uipd.NPP, uipd.SKS, uipd.MATERI);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

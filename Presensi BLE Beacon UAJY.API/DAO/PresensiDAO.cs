@@ -216,6 +216,31 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+
+        public dynamic InsertPresensiDosen(int idkelas, string npp, int sks, string materi)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN (ID_Kelas, NPP, SKS, MATERI) 
+                                VALUES (@idkelas, @npp, @sks, @materi)";
+
+                var param = new { IDKELAS = idkelas,  NPP = npp, SKS = sks, MATERI = materi };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
         
     }
 }

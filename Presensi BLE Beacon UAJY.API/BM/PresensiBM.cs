@@ -49,5 +49,14 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
 
             return output;
         }
+
+        public OutPutApi InsertPresensiDosen(int idkelas, string npp, int sks, string materi)
+        {
+            var data = dao.InsertPresensiDosen(idkelas, npp, sks, materi);
+
+            output.data = data;
+
+            return output;
+        }
     }
 }
