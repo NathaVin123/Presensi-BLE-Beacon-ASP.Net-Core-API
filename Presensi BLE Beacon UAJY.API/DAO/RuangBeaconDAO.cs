@@ -79,7 +79,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC 
+                string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC, STATUS 
                                 FROM SIATMAX_121212.dbo.REF_BEACON 
                                 ORDER BY JARAK_MIN_DEC DESC";
 
@@ -122,14 +122,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic DeleteBcn(string uuid)
+        public dynamic DeleteBeacon(string uuid)
         {
             SqlConnection conn = new SqlConnection();
             try
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"DELETE FROM SIATMAX_121212.dbo.REF_BEACON WHERE PROXIMITY_UUID = @uuid";
+                string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET STATUS = 0
+                                WHERE PROXIMITY_UUID = @uuid";
 
                 var param = new { UUID = uuid };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
@@ -153,9 +154,10 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI FROM MST_RUANG r 
+                string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI, b.NAMA_DEVICE FROM MST_RUANG r 
                                     JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
-                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI";
+                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI
+                                    FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON";
 
                 var data = conn.Query<dynamic>(query).ToList();
 

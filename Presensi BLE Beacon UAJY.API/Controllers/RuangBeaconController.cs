@@ -82,12 +82,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpDelete("Hapus")]
-        public ActionResult DeleteBcn([FromForm] UserDeleteBeacon uhb)
+        [HttpPut("SoftHapus")]
+        public ActionResult DeleteBcn([FromForm] UserDeleteBeacon udb)
         {
             try
             {
-                var data = bm.DeleteBeacon(uhb.UUID);
+                var data = bm.DeleteBeacon(udb.UUID);
 
                 return Ok(data);
             }

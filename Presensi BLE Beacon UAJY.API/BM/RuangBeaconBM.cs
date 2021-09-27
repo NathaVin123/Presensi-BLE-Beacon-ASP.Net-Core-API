@@ -56,7 +56,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
 
         public OutPutApi DeleteBeacon(string uuid)
         {
-            var data = dao.DeleteBcn(uuid);
+            var data = dao.DeleteBeacon(uuid);
 
             output.data = data;
 

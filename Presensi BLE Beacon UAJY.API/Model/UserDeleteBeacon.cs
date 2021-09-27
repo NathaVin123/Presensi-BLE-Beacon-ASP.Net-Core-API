@@ -8,5 +8,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.Model
     public class UserDeleteBeacon
     {
         public string UUID { get; set; }
+        // public int STATUS { get; set; }
     }
 }
