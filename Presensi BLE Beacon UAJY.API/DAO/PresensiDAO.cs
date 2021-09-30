@@ -36,6 +36,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 									s3.SESI AS SESI3,
 									s4.SESI AS SESI4,
 									kls.SKS,
+									pdsn.PERTEMUAN_KE,
 									r.RUANG,
 		                            b.PROXIMITY_UUID,
 		                            b.NAMA_DEVICE,
@@ -57,8 +58,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 								FULL OUTER JOIN MST_DOSEN d3 ON kls.NPP_DOSEN3 = d3.NPP
 								FULL OUTER JOIN MST_DOSEN d4 ON kls.NPP_DOSEN4 = d4.NPP
 	                            FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
-                              WHERE d1.NPP = @npp AND b.ID_BEACON IS NOT NULL
-                              ORDER BY IS_BUKA_PRESENSI DESC";
+								FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                              WHERE d1.NPP = @npp AND b.ID_BEACON IS NOT NULL AND pdsn.PERTEMUAN_KE IS NOT NULL
+                              ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
                 var param = new { NPP = npp };
                 var data = conn.Query<dynamic>(query, param).ToList();
@@ -200,7 +202,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 string query = @"SELECT	mhs.NPM, mhs.NAMA_MHS FROM MST_MHS_AKTIF mhs 
                                 JOIN TBL_KRS krs ON mhs.NPM = krs.NPM 
                                 JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS 
-                                WHERE kls.ID_KELAS = @idkelas";
+                                WHERE kls.ID_KELAS = @idkelas
+                                ORDER BY mhs.NPM ASC";
 
                 var param = new { IDKELAS = idkelas };
                 var data = conn.Query<dynamic>(query, param).ToList();
@@ -217,17 +220,45 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiDosen(int idkelas, string npp, int sks, string materi)
+        public dynamic UpdatePresensiDosen(string jammasuk, string jamkeluar, string keterangan, string materi, int idkelas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"INSERT INTO SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN (ID_Kelas, NPP, SKS, MATERI) 
-                                VALUES (@idkelas, @npp, @sks, @materi)";
+                string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN 
+                                SET JAM_MASUK = @jammasuk, 
+                                JAM_KELUAR = @jammasuk, 
+                                KETERANGAN = @keterangan, 
+                                MATERI = @materi 
+                                WHERE ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new { IDKELAS = idkelas,  NPP = npp, SKS = sks, MATERI = materi };
+                var param = new { JAMMASUK = jammasuk, JAMKELUAR = jamkeluar, KETERANGAN = keterangan, MATERI = materi, IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiMahasiswa()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;

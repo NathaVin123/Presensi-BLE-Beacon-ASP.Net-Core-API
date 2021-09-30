@@ -147,6 +147,34 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        public dynamic PostListRuanganNamaDevice(string ruang)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"SELECT b.NAMA_DEVICE FROM MST_RUANG r 
+                                    JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
+                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI 
+                                    FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+									WHERE r.RUANG = @ruang";
+
+                var param = new { RUANG = ruang };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
         public dynamic GetListRuangan()
         {
             SqlConnection conn = new SqlConnection();
@@ -154,10 +182,13 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI, b.NAMA_DEVICE FROM MST_RUANG r 
+                // string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI, b.NAMA_DEVICE FROM MST_RUANG r 
+                //                     JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
+                //                     JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI
+                //                     FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON";
+                string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI FROM MST_RUANG r 
                                     JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
-                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI
-                                    FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON";
+                                    JOIN REF_PRODI p ON r.ID_PRODI = p.ID_PRODI";
 
                 var data = conn.Query<dynamic>(query).ToList();
 
@@ -172,6 +203,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+
+        
 
         public dynamic GetListDetailRuangan()
         {

@@ -98,6 +98,22 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("NamaDevice")]
+        public ActionResult ListRngnDevice([FromForm] UserListRuanganNamaDevice ulrnd)
+        {
+            try
+            {
+                var data = bm.ListRuanganNamaDevice(ulrnd.RUANG);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpGet("TampilRuangan")]
         public ActionResult ListRngn()
         {

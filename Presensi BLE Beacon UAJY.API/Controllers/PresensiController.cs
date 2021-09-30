@@ -83,12 +83,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("PostInsertPresensiDosen")]
-        public ActionResult InsertDsn([FromForm] UserInsertPresensiDosen uipd)
+        [HttpPut("PutPresensiDosen")]
+        public ActionResult UpdatePresensiDsn([FromForm] UserUpdatePresensiDosen uupd)
         {
             try
             {
-                var data = bm.InsertPresensiDosen(uipd.ID_Kelas, uipd.NPP, uipd.SKS, uipd.MATERI);
+                var data = bm.UpdatePresensiDosen(uupd.JAM_MASUK, uupd.JAM_KELUAR, uupd.KETERANGAN, uupd.MATERI, uupd.ID_Kelas, uupd.PERTEMUAN_KE);
 
                 return Ok(data);
             }

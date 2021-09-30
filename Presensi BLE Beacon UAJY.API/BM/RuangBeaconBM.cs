@@ -63,6 +63,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        public OutPutApi ListRuanganNamaDevice(string ruang)
+        {
+            var data = dao.PostListRuanganNamaDevice(ruang);
+
+            output.data = data;
+
+            return output;
+        }
+
         public OutPutApi ListRuangan()
         {
             var data = dao.GetListRuangan();
