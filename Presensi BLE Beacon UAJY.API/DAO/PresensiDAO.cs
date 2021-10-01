@@ -42,7 +42,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 		                            b.NAMA_DEVICE,
                                     b.JARAK_MIN_DEC,
 									kls.KAPASITAS_KELAS,
-                                    kls.IS_BUKA_PRESENSI
+                                    pdsn.IS_BUKA_PRESENSI
                               FROM  TBL_KELAS kls
 	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
 	                            FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
@@ -60,7 +60,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                            FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
 								FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
                               WHERE d1.NPP = @npp AND b.ID_BEACON IS NOT NULL AND pdsn.PERTEMUAN_KE IS NOT NULL
-                              ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
+                              ORDER BY pdsn.IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
                 var param = new { NPP = npp };
                 var data = conn.Query<dynamic>(query, param).ToList();
@@ -106,11 +106,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 									s4.SESI AS SESI4,
 									kls.SKS,
 									r.RUANG,
+                                    pdsn.PERTEMUAN_KE,
 		                            b.PROXIMITY_UUID,
 		                            b.NAMA_DEVICE,
                                     b.JARAK_MIN_DEC,
 									kls.KAPASITAS_KELAS,
-                                    kls.IS_BUKA_PRESENSI
+                                    pdsn.IS_BUKA_PRESENSI
                               FROM  TBL_KELAS kls
 	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
 								JOIN TBL_KRS krs ON kls.ID_KELAS = krs.ID_KELAS
@@ -128,6 +129,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 								FULL OUTER JOIN MST_DOSEN d3 ON kls.NPP_DOSEN3 = d3.NPP
 								FULL OUTER JOIN MST_DOSEN d4 ON kls.NPP_DOSEN4 = d4.NPP
 	                            FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+                                FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
                               WHERE mhs.NPM = @npm AND b.ID_BEACON IS NOT NULL
                               ORDER BY IS_BUKA_PRESENSI DESC";
 
@@ -146,39 +148,16 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic GetListKelasMahasiswa()
+        public dynamic DosenBukaPresensi(int idkelas, int bukapresensi, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"";
+                string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN SET IS_BUKA_PRESENSI = @bukapresensi WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
-                var data = conn.Query<dynamic>(query).ToList();
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic DosenBukaPresensi(int idkelas, int bukapresensi)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"UPDATE TBL_KELAS SET IS_BUKA_PRESENSI = @bukapresensi WHERE ID_KELAS = @idkelas";
-
-                var param = new { IDKELAS = idkelas, BUKAPRESENSI = bukapresensi };
+                var param = new { IDKELAS = idkelas, BUKAPRESENSI = bukapresensi , PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -220,7 +199,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdatePresensiDosen(string jammasuk, string jamkeluar, string keterangan, string materi, int idkelas, int pertemuan)
+        public dynamic UpdateINPresensiDosen(string jammasuk, int idkelas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -228,13 +207,10 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN 
-                                SET JAM_MASUK = @jammasuk, 
-                                JAM_KELUAR = @jammasuk, 
-                                KETERANGAN = @keterangan, 
-                                MATERI = @materi 
+                                SET JAM_MASUK = @jammasuk
                                 WHERE ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new { JAMMASUK = jammasuk, JAMKELUAR = jamkeluar, KETERANGAN = keterangan, MATERI = materi, IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { JAMMASUK = jammasuk, IDKELAS = idkelas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -249,7 +225,362 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiMahasiswa()
+        public dynamic UpdateOUTPresensiDosen(string jamkeluar, string keterangan, string materi, int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN 
+                                SET JAM_KELUAR = @jamkeluar, 
+                                KETERANGAN = @keterangan, 
+                                MATERI = @materi
+                                WHERE ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan";
+
+                var param = new { JAMKELUAR = jamkeluar, KETERANGAN = keterangan, MATERI = materi, IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToKSI(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO TBL_PRESENSI_MHS 
+                                (ID_Kelas, 
+                                NPM, 
+                                PERTEMUAN_KE, 
+                                TGL_IN)
+								VALUES 
+                                (@idkelas
+                                ,@npm
+                                ,@pertemuan
+                                ,@tglin)";
+
+                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdatePresensiOUTMahasiswaToKSI(int idkelas, string npm ,int pertemuan, string tglout, string status, string materi)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"UPDATE TBL_PRESENSI_MHS 
+                                SET TGL_OUT = @tglout, 
+                                STATUS = @status, 
+                                MATERI = @materi 
+                                WHERE ID_Kelas = @idkelas 
+                                AND NPM = @npm 
+                                AND PERTEMUAN_KE = @pertemuan";
+
+                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status, MATERI = materi};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFBE()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiOUTMahasiswaToFBE()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFH()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiOUTMahasiswaToFH()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFISIP()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiOUTMahasiswaToFISIP()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFT()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiOUTMahasiswaToFT()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFTB()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiOUTMahasiswaToFTB()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFTI()
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"";
+
+                var param = new {};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiOUTMahasiswaToFTI()
         {
             SqlConnection conn = new SqlConnection();
             try

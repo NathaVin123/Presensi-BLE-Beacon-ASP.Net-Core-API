@@ -32,9 +32,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi DosenBukaPresensi(int idkelas, int bukapresensi)
+        public OutPutApi DosenBukaPresensi(int idkelas, int bukapresensi, int pertemuan)
         {
-            var data = dao.DosenBukaPresensi(idkelas, bukapresensi);
+            var data = dao.DosenBukaPresensi(idkelas, bukapresensi, pertemuan);
 
             output.data = data;
 
@@ -50,9 +50,36 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdatePresensiDosen(string jammasuk, string jamkeluar, string keterangan, string materi, int idkelas, int pertemuan)
+        public OutPutApi UpdateINPresensiDosen(string jammasuk, int idkelas, int pertemuan)
         {
-            var data = dao.UpdatePresensiDosen(jammasuk, jamkeluar, keterangan, materi, idkelas, pertemuan);
+            var data = dao.UpdateINPresensiDosen(jammasuk, idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdateOUTPresensiDosen( string jamkeluar, string keterangan, string materi, int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTPresensiDosen(jamkeluar, keterangan, materi, idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToKSI(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToKSI(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToKSI(int idkelas, string npm ,int pertemuan, string tglout, string status, string materi)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToKSI(idkelas, npm, pertemuan, tglout, status, materi);
 
             output.data = data;
 

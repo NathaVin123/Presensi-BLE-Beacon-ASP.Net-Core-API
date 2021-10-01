@@ -10,5 +10,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Model
         public int ID_KELAS { get; set; }
 
         public int IS_BUKA_PRESENSI { get; set; }
+
+        public int PERTEMUAN_KE { get; set; }
     }
 }

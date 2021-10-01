@@ -56,7 +56,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.DosenBukaPresensi(ubpd.ID_KELAS, ubpd.IS_BUKA_PRESENSI);
+                var data = bm.DosenBukaPresensi(ubpd.ID_KELAS, ubpd.IS_BUKA_PRESENSI, ubpd.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -83,12 +83,44 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPut("PutPresensiDosen")]
-        public ActionResult UpdatePresensiDsn([FromForm] UserUpdatePresensiDosen uupd)
+        [HttpPut("PutINPresensiDosen")]
+        public ActionResult UpdateINPresensiDsn([FromForm] UserUpdateINPresensiDosen uuipd)
         {
             try
             {
-                var data = bm.UpdatePresensiDosen(uupd.JAM_MASUK, uupd.JAM_KELUAR, uupd.KETERANGAN, uupd.MATERI, uupd.ID_Kelas, uupd.PERTEMUAN_KE);
+                var data = bm.UpdateINPresensiDosen(uuipd.JAM_MASUK, uuipd.ID_KELAS, uuipd.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("PutOUTPresensiDosen")]
+        public ActionResult UpdateOUTPresensiDsn([FromForm] UserUpdateOUTPresensiDosen uuopd)
+        {
+            try
+            {
+                var data = bm.UpdateOUTPresensiDosen(uuopd.JAM_KELUAR, uuopd.KETERANGAN, uuopd.MATERI, uuopd.ID_KELAS, uuopd.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostInMhsToKSI")]
+        public ActionResult InsertINPresensiMhsToKSI([FromForm] UserInsertPresensiINToKSI presensiin)
+        {
+            try
+            {
+                var data = bm.InsertPresensiINMhsToKSI(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
                 return Ok(data);
             }
