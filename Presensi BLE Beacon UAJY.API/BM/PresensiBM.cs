@@ -14,18 +14,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
-        public OutPutApi ListKelasDsn(string npp)
+        public OutPutApi ListKelasDsn(string npp, string tglnow)
         {
-            var data = dao.GetListKelasDosen(npp);
+            var data = dao.GetListKelasDosen(npp, tglnow);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi ListKelasMhs(string npm)
+        public OutPutApi ListKelasMhs(string npm, string tglnow)
         {
-            var data = dao.GetListKelasMahasiswa(npm);
+            var data = dao.GetListKelasMahasiswa(npm, tglnow);
 
             output.data = data;
 
@@ -77,9 +77,117 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdatePresensiOUTMhsToKSI(int idkelas, string npm ,int pertemuan, string tglout, string status, string materi)
+        public OutPutApi UpdatePresensiOUTMhsToKSI(int idkelas, string npm ,int pertemuan, string tglout, string status)
         {
-            var data = dao.UpdatePresensiOUTMahasiswaToKSI(idkelas, npm, pertemuan, tglout, status, materi);
+            var data = dao.UpdatePresensiOUTMahasiswaToKSI(idkelas, npm, pertemuan, tglout, status);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToFBE(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToFBE(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToFBE(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToFBE(idkelas, npm, pertemuan, tglout, status);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToFH(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToFH(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToFH(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToFH(idkelas, npm, pertemuan, tglout, status);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToFISIP(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToFISIP(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToFISIP(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToFISIP(idkelas, npm, pertemuan, tglout, status);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToFT(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToFT(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToFT(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToFT(idkelas, npm, pertemuan, tglout, status);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToFTB(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToFTB(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToFTB(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToFTI(idkelas, npm, pertemuan, tglout, status);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertPresensiINMhsToFTI(int idkelas, string npm ,int pertemuan, string tglin)
+        {
+            var data = dao.InsertPresensiINMahasiswaToFTB(idkelas, npm, pertemuan, tglin);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdatePresensiOUTMhsToFTI(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        {
+            var data = dao.UpdatePresensiOUTMahasiswaToFTI(idkelas, npm, pertemuan, tglout, status);
 
             output.data = data;
 
