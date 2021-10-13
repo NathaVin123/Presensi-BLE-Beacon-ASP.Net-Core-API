@@ -8,8 +8,5 @@ namespace Presensi_BLE_Beacon_UAJY.API.Model
     public class UserListKelasDsn
     {
         public string NPP { get; set; }
-
-        public string TGLNOW {get; set; }
-        // public string SEMESTER { get; set; }
     }
 }

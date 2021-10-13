@@ -24,7 +24,23 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.ListKelasDsn(ulkd.NPP, ulkd.TGLNOW);
+                var data = bm.ListKelasDsn(ulkd.NPP);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostGetAllListKelas")]
+        public ActionResult ListAllKelasDsn([FromForm] UserListKelasDsn ulkd)
+        {
+            try
+            {
+                var data = bm.ListAllKelasDsn(ulkd.NPP);
 
                 return Ok(data);
             }
@@ -40,7 +56,23 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.ListKelasMhs(ulkm.NPM, ulkm.TGLNOW);
+                var data = bm.ListKelasMhs(ulkm.NPM);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostGetAllListKelasMhs")]
+        public ActionResult ListAllKelasMhs([FromForm] UserListKelasMhs ulkm)
+        {
+            try
+            {
+                var data = bm.ListAllKelasMhs(ulkm.NPM);
 
                 return Ok(data);
             }

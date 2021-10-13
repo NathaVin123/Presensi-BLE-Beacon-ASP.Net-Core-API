@@ -12,5 +12,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.Model
         public string NAMA_DEVICE { get; set; }
 
         public float JARAK_MIN { get; set; }
+
+        public int MAJOR { get; set; }
+
+        public int MINOR { get; set; }
     }
 }

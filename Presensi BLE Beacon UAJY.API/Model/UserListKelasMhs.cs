@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Presensi_BLE_Beacon_UAJY.API.Model
 {
-    public class UserListKelasMhs{
+    public class UserListKelasMhs
+    {
         public string NPM { get; set; }
-
-        public string TGLNOW { get; set; }
     }
 }

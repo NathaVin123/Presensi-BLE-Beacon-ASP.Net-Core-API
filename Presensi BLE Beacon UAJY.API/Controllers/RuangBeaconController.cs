@@ -39,7 +39,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.TambahBeacon(utb.UUID, utb.NAMA_DEVICE, utb.JARAK_MIN);
+                var data = bm.TambahBeacon(utb.UUID, utb.NAMA_DEVICE, utb.JARAK_MIN, utb.MAJOR, utb.MINOR);
 
                 return Ok(data);
             }
@@ -71,7 +71,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.UpdateBeacon(uub.UUID, uub.NAMA_DEVICE, uub.JARAK_MIN);
+                var data = bm.UpdateBeacon(uub.UUID, uub.NAMA_DEVICE, uub.JARAK_MIN, uub.MAJOR, uub.MINOR);
 
                 return Ok(data);
             }
@@ -87,7 +87,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.DeleteBeacon(udb.UUID);
+                var data = bm.DeleteBeacon(udb.UUID, udb.STATUS);
 
                 return Ok(data);
             }

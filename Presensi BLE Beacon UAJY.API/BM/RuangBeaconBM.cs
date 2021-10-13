@@ -27,9 +27,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi TambahBeacon(string uuid, string nama_device, float jarak_min)
+        public OutPutApi TambahBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
-            var data = dao.TambahBeacon(uuid, nama_device, jarak_min);
+            var data = dao.TambahBeacon(uuid, nama_device, jarak_min, major, minor);
 
             output.data = data;
 
@@ -45,18 +45,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdateBeacon(string uuid, string nama_device, float jarak_min)
+        public OutPutApi UpdateBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
-            var data = dao.UpdateBeacon(uuid, nama_device, jarak_min);
+            var data = dao.UpdateBeacon(uuid, nama_device, jarak_min, major, minor);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi DeleteBeacon(string uuid)
+        public OutPutApi DeleteBeacon(string uuid, int status)
         {
-            var data = dao.DeleteBeacon(uuid);
+            var data = dao.DeleteBeacon(uuid, status);
 
             output.data = data;
 
