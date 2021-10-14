@@ -120,7 +120,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.UpdateINPresensiDosen(uuipd.JAM_MASUK, uuipd.ID_KELAS, uuipd.PERTEMUAN_KE);
+                var data = bm.UpdateINPresensiDosen(uuipd.ID_KELAS, uuipd.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -136,7 +136,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.UpdateOUTPresensiDosen(uuopd.JAM_KELUAR, uuopd.KETERANGAN, uuopd.MATERI, uuopd.ID_KELAS, uuopd.PERTEMUAN_KE);
+                var data = bm.UpdateOUTPresensiDosen(uuopd.KETERANGAN, uuopd.MATERI, uuopd.ID_KELAS, uuopd.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -152,7 +152,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.InsertPresensiINMhsToKSI(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+                var data = bm.InsertPresensiINMhsToKSI(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN);
 
                 return Ok(data);
             }
@@ -168,7 +168,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.UpdatePresensiOUTMhsToKSI(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+                var data = bm.UpdatePresensiOUTMhsToKSI(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.STATUS);
 
                 return Ok(data);
             }
