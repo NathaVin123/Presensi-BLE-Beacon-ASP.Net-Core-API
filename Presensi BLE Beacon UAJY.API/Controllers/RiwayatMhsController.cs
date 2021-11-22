@@ -24,7 +24,23 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.RiwayatMhs(urm.NPM, urm.SEMESTER);
+                var data = bm.RiwayatMhs(urm.NPM);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostGetAllDosen")]
+        public ActionResult RiwayatDosen([FromForm] UserRiwayatDsn urd)
+        {
+            try
+            {
+                var data = bm.RiwayatDsn(urd.NPP);
 
                 return Ok(data);
             }

@@ -8,6 +8,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.Model
     public class UserRiwayatMhs
     {
         public string NPM { get; set; }
-        public string SEMESTER { get; set; }
+
     }
 }

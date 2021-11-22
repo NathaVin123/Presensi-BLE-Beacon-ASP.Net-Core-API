@@ -24,7 +24,23 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         {
             try
             {
-                var data = bm.JadwalMhs(ujm.NPM, ujm.SEMESTER);
+                var data = bm.JadwalMhs(ujm.NPM);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostGetAllDosen")]
+        public ActionResult JadwalDsn([FromForm] UserJadwalDsn ujd)
+        {
+            try
+            {
+                var data = bm.JadwalDsn(ujd.NPP);
 
                 return Ok(data);
             }
@@ -34,4 +50,5 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
     }
+    
 }
