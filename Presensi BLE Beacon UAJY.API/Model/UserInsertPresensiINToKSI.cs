@@ -13,6 +13,5 @@ namespace Presensi_BLE_Beacon_UAJY.API.Model
 
         public int PERTEMUAN {get; set;}
 
-        public string TGLIN {get; set;}  
     }
 }

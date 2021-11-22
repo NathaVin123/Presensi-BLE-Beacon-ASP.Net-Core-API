@@ -503,7 +503,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                                 SET JAM_MASUK = CURRENT_TIMESTAMP
                                 WHERE ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new {  IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -546,7 +546,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiINMahasiswaToKSI(int idkelas, string npm ,int pertemuan)
+        public dynamic InsertPresensiINMahasiswaToKSI(int idkelas, string npm, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -554,15 +554,17 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas, 
                                 NPM, 
                                 PERTEMUAN_KE, 
                                 TGL_IN)
 								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,CURRENT_TIMESTAMP)";
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
 
                 var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan};
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
@@ -579,7 +581,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdatePresensiOUTMahasiswaToKSI(int idkelas, string npm ,int pertemuan, string status)
+        public dynamic UpdatePresensiOUTMahasiswaToKSI(int idkelas, string npm, int pertemuan, string status)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -587,6 +589,130 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"UPDATE TBL_PRESENSI_MHS 
+                                SET TGL_OUT = CURRENT_TIMESTAMP,
+                                STATUS = @status
+                                WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
+
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, STATUS = status };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFBE(int idkelas, string npm ,int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FBE.dbo.TBL_PRESENSI_MHS 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas, 
+                                NPM, 
+                                PERTEMUAN_KE, 
+                                TGL_IN)
+								VALUES 
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
+
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdatePresensiOUTMahasiswaToFBE(int idkelas, string npm ,int pertemuan, string status)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"UPDATE SIATMA_FBE.dbo.TBL_PRESENSI_MHS 
+                                SET TGL_OUT = CURRENT_TIMESTAMP, 
+                                STATUS = @status
+                                WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
+
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, STATUS = status };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertPresensiINMahasiswaToFH(int idkelas, string npm, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FH.dbo.TBL_PRESENSI_MHS 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas,
+                                NPM, 
+                                PERTEMUAN_KE, 
+                                TGL_IN)
+								VALUES
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
+
+                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan};
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdatePresensiOUTMahasiswaToFH(int idkelas, string npm, int pertemuan, string status)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS 
                                 SET TGL_OUT = CURRENT_TIMESTAMP, 
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
@@ -606,127 +732,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiINMahasiswaToFBE(int idkelas, string npm ,int pertemuan, string tglin)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"INSERT INTO SIATMA_FBE.dbo.TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
-                                NPM, 
-                                PERTEMUAN_KE, 
-                                TGL_IN)
-								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,@tglin)";
-
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
-                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic UpdatePresensiOUTMahasiswaToFBE(int idkelas, string npm ,int pertemuan, string tglout, string status)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"UPDATE SIATMA_FBE.dbo.TBL_PRESENSI_MHS 
-                                SET TGL_OUT = @tglout, 
-                                STATUS = @status
-                                WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
-
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status};
-                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic InsertPresensiINMahasiswaToFH(int idkelas, string npm ,int pertemuan, string tglin)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"INSERT INTO SIATMA_FH.dbo.TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
-                                NPM, 
-                                PERTEMUAN_KE, 
-                                TGL_IN)
-								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,@tglin)";
-
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
-                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic UpdatePresensiOUTMahasiswaToFH(int idkelas, string npm ,int pertemuan, string tglout, string status)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS 
-                                SET TGL_OUT = @tglout, 
-                                STATUS = @status
-                                WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
-
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status};
-                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic InsertPresensiINMahasiswaToFISIP(int idkelas, string npm ,int pertemuan, string tglin)
+        public dynamic InsertPresensiINMahasiswaToFISIP(int idkelas, string npm ,int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -734,17 +740,19 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FISIP.dbo.TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
-                                NPM, 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas,
+                                NPM,
                                 PERTEMUAN_KE, 
                                 TGL_IN)
-								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,@tglin)";
+								VALUES
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -759,7 +767,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdatePresensiOUTMahasiswaToFISIP(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        public dynamic UpdatePresensiOUTMahasiswaToFISIP(int idkelas, string npm ,int pertemuan, string status)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -767,11 +775,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"UPDATE SIATMA_FISIP.dbo.TBL_PRESENSI_MHS 
-                                SET TGL_OUT = @tglout, 
+                                SET TGL_OUT = CURRENT_TIMESTAMP, 
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status};
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, STATUS = status };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -786,7 +794,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiINMahasiswaToFT(int idkelas, string npm ,int pertemuan, string tglin)
+        public dynamic InsertPresensiINMahasiswaToFT(int idkelas, string npm, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -794,17 +802,19 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas, 
                                 NPM, 
                                 PERTEMUAN_KE, 
                                 TGL_IN)
 								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,@tglin)";
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
+                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan};
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -819,7 +829,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdatePresensiOUTMahasiswaToFT(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        public dynamic UpdatePresensiOUTMahasiswaToFT(int idkelas, string npm ,int pertemuan, string status)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -827,11 +837,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"UPDATE SIATMA_FT.dbo.TBL_PRESENSI_MHS 
-                                SET TGL_OUT = @tglout, 
+                                SET TGL_OUT = CURRENT_TIMESTAMP, 
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status};
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, STATUS = status };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -846,7 +856,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiINMahasiswaToFTB(int idkelas, string npm ,int pertemuan, string tglin)
+        public dynamic InsertPresensiINMahasiswaToFTB(int idkelas, string npm, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -854,17 +864,19 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FTB.dbo.TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas, 
                                 NPM, 
                                 PERTEMUAN_KE, 
                                 TGL_IN)
 								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,@tglin)";
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
+                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan};
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -879,7 +891,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdatePresensiOUTMahasiswaToFTB(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        public dynamic UpdatePresensiOUTMahasiswaToFTB(int idkelas, string npm ,int pertemuan, string status)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -887,11 +899,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"UPDATE SIATMA_FTB.dbo.TBL_PRESENSI_MHS 
-                                SET TGL_OUT = @tglout, 
+                                SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status};
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, STATUS = status };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -906,7 +918,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertPresensiINMahasiswaToFTI(int idkelas, string npm ,int pertemuan, string tglin)
+        public dynamic InsertPresensiINMahasiswaToFTI(int idkelas, string npm, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -914,17 +926,19 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FTI.dbo.TBL_PRESENSI_MHS 
-                                (ID_Kelas, 
+                                (ID_PRESENSI_MHS,
+                                ID_Kelas, 
                                 NPM, 
                                 PERTEMUAN_KE, 
                                 TGL_IN)
 								VALUES 
-                                (@idkelas
-                                ,@npm
-                                ,@pertemuan
-                                ,@tglin)";
+                                ('99999',
+                                @idkelas,
+                                @npm,
+                                @pertemuan,
+                                CURRENT_TIMESTAMP)";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, tglin = tglin};
+                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan};
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -939,7 +953,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic UpdatePresensiOUTMahasiswaToFTI(int idkelas, string npm ,int pertemuan, string tglout, string status)
+        public dynamic UpdatePresensiOUTMahasiswaToFTI(int idkelas, string npm ,int pertemuan, string status)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -947,11 +961,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"UPDATE SIATMA_FTI.dbo.TBL_PRESENSI_MHS 
-                                SET TGL_OUT = @tglout, 
+                                SET TGL_OUT = CURRENT_TIMESTAMP, 
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
 
-                var param = new {IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, TGLOUT = tglout, STATUS = status};
+                var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan, STATUS = status };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;

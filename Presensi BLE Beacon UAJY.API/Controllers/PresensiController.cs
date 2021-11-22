@@ -178,196 +178,196 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
-        [AllowAnonymous]
-        [HttpPost("PostInMhsToFBE")]
-        public ActionResult InsertINPresensiMhsToFBE([FromForm] UserInsertPresensiINToKSI presensiin)
-        {
-            try
-            {
-                var data = bm.InsertPresensiINMhsToFBE(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+        // [AllowAnonymous]
+        // [HttpPost("PostInMhsToFBE")]
+        // public ActionResult InsertINPresensiMhsToFBE([FromForm] UserInsertPresensiINToKSI presensiin)
+        // {
+        //     try
+        //     {
+        //         var data = bm.InsertPresensiINMhsToFBE(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPut("PutOutMhsToFBE")]
-        public ActionResult UpdateOUTPresensiMhsToFBE([FromForm] UserUpdatePresensiOUTToKSI presensiout)
-        {
-            try
-            {
-                var data = bm.UpdatePresensiOUTMhsToFBE(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+        // [AllowAnonymous]
+        // [HttpPut("PutOutMhsToFBE")]
+        // public ActionResult UpdateOUTPresensiMhsToFBE([FromForm] UserUpdatePresensiOUTToKSI presensiout)
+        // {
+        //     try
+        //     {
+        //         var data = bm.UpdatePresensiOUTMhsToFBE(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPost("PostInMhsToFH")]
-        public ActionResult InsertINPresensiMhsToFH([FromForm] UserInsertPresensiINToKSI presensiin)
-        {
-            try
-            {
-                var data = bm.InsertPresensiINMhsToFH(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+        // [AllowAnonymous]
+        // [HttpPost("PostInMhsToFH")]
+        // public ActionResult InsertINPresensiMhsToFH([FromForm] UserInsertPresensiINToKSI presensiin)
+        // {
+        //     try
+        //     {
+        //         var data = bm.InsertPresensiINMhsToFH(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPut("PutOutMhsToFH")]
-        public ActionResult UpdateOUTPresensiMhsToFH([FromForm] UserUpdatePresensiOUTToKSI presensiout)
-        {
-            try
-            {
-                var data = bm.UpdatePresensiOUTMhsToFH(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+        // [AllowAnonymous]
+        // [HttpPut("PutOutMhsToFH")]
+        // public ActionResult UpdateOUTPresensiMhsToFH([FromForm] UserUpdatePresensiOUTToKSI presensiout)
+        // {
+        //     try
+        //     {
+        //         var data = bm.UpdatePresensiOUTMhsToFH(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPost("PostInMhsToFISIP")]
-        public ActionResult InsertINPresensiMhsToFISIP([FromForm] UserInsertPresensiINToKSI presensiin)
-        {
-            try
-            {
-                var data = bm.InsertPresensiINMhsToFISIP(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+        // [AllowAnonymous]
+        // [HttpPost("PostInMhsToFISIP")]
+        // public ActionResult InsertINPresensiMhsToFISIP([FromForm] UserInsertPresensiINToKSI presensiin)
+        // {
+        //     try
+        //     {
+        //         var data = bm.InsertPresensiINMhsToFISIP(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPut("PutOutMhsToFISIP")]
-        public ActionResult UpdateOUTPresensiMhsToFISIP([FromForm] UserUpdatePresensiOUTToKSI presensiout)
-        {
-            try
-            {
-                var data = bm.UpdatePresensiOUTMhsToFISIP(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+        // [AllowAnonymous]
+        // [HttpPut("PutOutMhsToFISIP")]
+        // public ActionResult UpdateOUTPresensiMhsToFISIP([FromForm] UserUpdatePresensiOUTToKSI presensiout)
+        // {
+        //     try
+        //     {
+        //         var data = bm.UpdatePresensiOUTMhsToFISIP(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPost("PostInMhsToFT")]
-        public ActionResult InsertINPresensiMhsToFT([FromForm] UserInsertPresensiINToKSI presensiin)
-        {
-            try
-            {
-                var data = bm.InsertPresensiINMhsToFT(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+        // [AllowAnonymous]
+        // [HttpPost("PostInMhsToFT")]
+        // public ActionResult InsertINPresensiMhsToFT([FromForm] UserInsertPresensiINToKSI presensiin)
+        // {
+        //     try
+        //     {
+        //         var data = bm.InsertPresensiINMhsToFT(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPut("PutOutMhsToFT")]
-        public ActionResult UpdateOUTPresensiMhsToFT([FromForm] UserUpdatePresensiOUTToKSI presensiout)
-        {
-            try
-            {
-                var data = bm.UpdatePresensiOUTMhsToFT(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+        // [AllowAnonymous]
+        // [HttpPut("PutOutMhsToFT")]
+        // public ActionResult UpdateOUTPresensiMhsToFT([FromForm] UserUpdatePresensiOUTToKSI presensiout)
+        // {
+        //     try
+        //     {
+        //         var data = bm.UpdatePresensiOUTMhsToFT(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPost("PostInMhsToFTB")]
-        public ActionResult InsertINPresensiMhsToFTB([FromForm] UserInsertPresensiINToKSI presensiin)
-        {
-            try
-            {
-                var data = bm.InsertPresensiINMhsToFTB(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+        // [AllowAnonymous]
+        // [HttpPost("PostInMhsToFTB")]
+        // public ActionResult InsertINPresensiMhsToFTB([FromForm] UserInsertPresensiINToKSI presensiin)
+        // {
+        //     try
+        //     {
+        //         var data = bm.InsertPresensiINMhsToFTB(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPut("PutOutMhsToFTB")]
-        public ActionResult UpdateOUTPresensiMhsToFTB([FromForm] UserUpdatePresensiOUTToKSI presensiout)
-        {
-            try
-            {
-                var data = bm.UpdatePresensiOUTMhsToFTB(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+        // [AllowAnonymous]
+        // [HttpPut("PutOutMhsToFTB")]
+        // public ActionResult UpdateOUTPresensiMhsToFTB([FromForm] UserUpdatePresensiOUTToKSI presensiout)
+        // {
+        //     try
+        //     {
+        //         var data = bm.UpdatePresensiOUTMhsToFTB(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPost("PostInMhsToFTI")]
-        public ActionResult InsertINPresensiMhsToFTI([FromForm] UserInsertPresensiINToKSI presensiin)
-        {
-            try
-            {
-                var data = bm.InsertPresensiINMhsToFTI(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
+        // [AllowAnonymous]
+        // [HttpPost("PostInMhsToFTI")]
+        // public ActionResult InsertINPresensiMhsToFTI([FromForm] UserInsertPresensiINToKSI presensiin)
+        // {
+        //     try
+        //     {
+        //         var data = bm.InsertPresensiINMhsToFTI(presensiin.ID_KELAS, presensiin.NPM, presensiin.PERTEMUAN, presensiin.TGLIN);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [AllowAnonymous]
-        [HttpPut("PutOutMhsToFTI")]
-        public ActionResult UpdateOUTPresensiMhsToFTI([FromForm] UserUpdatePresensiOUTToKSI presensiout)
-        {
-            try
-            {
-                var data = bm.UpdatePresensiOUTMhsToFTI(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
+        // [AllowAnonymous]
+        // [HttpPut("PutOutMhsToFTI")]
+        // public ActionResult UpdateOUTPresensiMhsToFTI([FromForm] UserUpdatePresensiOUTToKSI presensiout)
+        // {
+        //     try
+        //     {
+        //         var data = bm.UpdatePresensiOUTMhsToFTI(presensiout.ID_KELAS, presensiout.NPM, presensiout.PERTEMUAN, presensiout.TGLOUT, presensiout.STATUS);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
     }
 }
