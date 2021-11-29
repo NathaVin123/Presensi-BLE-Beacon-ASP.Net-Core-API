@@ -77,7 +77,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdateOUTPresensiDosen( string keterangan, string materi, int idkelas, int pertemuan)
+        public OutPutApi UpdateOUTPresensiDosen(string keterangan, string materi, int idkelas, int pertemuan)
         {
             var data = dao.UpdateOUTPresensiDosen(keterangan, materi, idkelas, pertemuan);
 
@@ -104,7 +104,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi InsertPresensiINMhsToFBE(int idkelas, string npm ,int pertemuan)
+        public OutPutApi InsertPresensiINMhsToFBE(int idkelas, string npm, int pertemuan)
         {
             var data = dao.InsertPresensiINMahasiswaToFBE(idkelas, npm, pertemuan);
 
@@ -122,7 +122,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi InsertPresensiINMhsToFH(int idkelas, string npm ,int pertemuan)
+        public OutPutApi InsertPresensiINMhsToFH(int idkelas, string npm, int pertemuan)
         {
             var data = dao.InsertPresensiINMahasiswaToFH(idkelas, npm, pertemuan);
 
@@ -131,7 +131,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdatePresensiOUTMhsToFH(int idkelas, string npm ,int pertemuan, string status)
+        public OutPutApi UpdatePresensiOUTMhsToFH(int idkelas, string npm, int pertemuan, string status)
         {
             var data = dao.UpdatePresensiOUTMahasiswaToFH(idkelas, npm, pertemuan, status);
 
@@ -149,7 +149,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdatePresensiOUTMhsToFISIP(int idkelas, string npm ,int pertemuan, string status)
+        public OutPutApi UpdatePresensiOUTMhsToFISIP(int idkelas, string npm, int pertemuan, string status)
         {
             var data = dao.UpdatePresensiOUTMahasiswaToFISIP(idkelas, npm, pertemuan, status);
 
@@ -158,7 +158,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi InsertPresensiINMhsToFT(int idkelas, string npm ,int pertemuan)
+        public OutPutApi InsertPresensiINMhsToFT(int idkelas, string npm, int pertemuan)
         {
             var data = dao.InsertPresensiINMahasiswaToFT(idkelas, npm, pertemuan);
 
@@ -176,7 +176,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi InsertPresensiINMhsToFTB(int idkelas, string npm ,int pertemuan)
+        public OutPutApi InsertPresensiINMhsToFTB(int idkelas, string npm, int pertemuan)
         {
             var data = dao.InsertPresensiINMahasiswaToFTB(idkelas, npm, pertemuan);
 
@@ -185,25 +185,25 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi UpdatePresensiOUTMhsToFTB(int idkelas, string npm ,int pertemuan, string status)
+        public OutPutApi UpdatePresensiOUTMhsToFTB(int idkelas, string npm, int pertemuan, string status)
         {
-            var data = dao.UpdatePresensiOUTMahasiswaToFTI(idkelas, npm, pertemuan, status);
+            var data = dao.UpdatePresensiOUTMahasiswaToFTB(idkelas, npm, pertemuan, status);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi InsertPresensiINMhsToFTI(int idkelas, string npm ,int pertemuan)
+        public OutPutApi InsertPresensiINMhsToFTI(int idkelas, string npm, int pertemuan)
         {
-            var data = dao.InsertPresensiINMahasiswaToFTB(idkelas, npm, pertemuan);
+            var data = dao.InsertPresensiINMahasiswaToFTI(idkelas, npm, pertemuan);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi UpdatePresensiOUTMhsToFTI(int idkelas, string npm ,int pertemuan, string status)
+        public OutPutApi UpdatePresensiOUTMhsToFTI(int idkelas, string npm, int pertemuan, string status)
         {
             var data = dao.UpdatePresensiOUTMahasiswaToFTI(idkelas, npm, pertemuan, status);
 
