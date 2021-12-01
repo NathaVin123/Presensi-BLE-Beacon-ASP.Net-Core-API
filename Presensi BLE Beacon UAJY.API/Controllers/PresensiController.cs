@@ -115,6 +115,22 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost("PostGetListKehadiranPesertaKelas")]
+        public ActionResult ListKehadiranKelasMhs([FromForm] UserListKehadiranPesertaKelas ulkpk)
+        {
+            try
+            {
+                var data = bm.ListKehadiranPesertaKelasDsn(ulkpk.ID_KELAS, ulkpk.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpPut("PutINPresensiDosen")]
         public ActionResult UpdateINPresensiDsn([FromForm] UserUpdateINPresensiDosen uuipd)
         {

@@ -493,6 +493,39 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        public dynamic GetListKehadiranPesertaKelas(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"SELECT 
+                                    pmhs.NPM,
+                                    mhs.NAMA_MHS,
+                                    pmhs.STATUS,
+                                    CONVERT(varchar,pmhs.TGL_IN, 8) AS JAM_MASUK,
+                                    CONVERT(varchar,pmhs.TGL_OUT, 8) AS JAM_KELUAR
+                                FROM TBL_PRESENSI_MHS pmhs
+                                JOIN MST_MHS_AKTIF mhs ON pmhs.NPM = mhs.NPM
+                                WHERE pmhs.ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan
+                                ORDER BY pmhs.TGL_IN DESC";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.Query<dynamic>(query, param).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
         public dynamic UpdateINPresensiDosen(int idkelas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();

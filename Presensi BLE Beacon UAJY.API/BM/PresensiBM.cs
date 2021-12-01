@@ -68,6 +68,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        public OutPutApi ListKehadiranPesertaKelasDsn(int idkelas, int pertemuan)
+        {
+            var data = dao.GetListKehadiranPesertaKelas(idkelas,pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
         public OutPutApi UpdateINPresensiDosen(int idkelas, int pertemuan)
         {
             var data = dao.UpdateINPresensiDosen(idkelas, pertemuan);
