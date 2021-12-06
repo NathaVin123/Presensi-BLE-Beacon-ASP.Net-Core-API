@@ -334,7 +334,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //               WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(minute,-15,pdsn.JAM_MASUK_SEHARUSNYA) AND CURRENT_TIMESTAMP < DATEADD(minute,+15,pdsn.JAM_KELUAR_SEHARUSNYA)
                 //               ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
-                string query = @"SELECT
+                string query = @"SELECT 
 									kls.ID_KELAS,
 		                            kls.NAMA_MK,
 									kls.KELAS,
@@ -356,16 +356,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 									CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
 									CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
                                     pdsn.IS_BUKA_PRESENSI,
-                                    CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
+                                    CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG,
+                                    pmhs.TGL_IN,
+                                    pmhs.TGL_OUT,
+                                    pmhs.status
                               FROM  TBL_KELAS kls
 	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
 								JOIN TBL_KRS krs ON kls.ID_KELAS = krs.ID_KELAS
 								JOIN MST_MHS_AKTIF mhs ON krs.NPM = mhs.NPM
-	                            FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
-	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
-	                            FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
-	                            FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
-                                FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+	                             JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
+	                            JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
+	                             JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
+	                             JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+                                JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                                FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm and kls.ID_KELAS = pmhs.id_kelas
+									and pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                               WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(minute,-15,pdsn.JAM_MASUK_SEHARUSNYA) AND CURRENT_TIMESTAMP < DATEADD(minute,+15,pdsn.JAM_KELUAR_SEHARUSNYA)
                               ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
@@ -441,6 +446,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        
+
         public dynamic DosenBukaPresensi(int idkelas, int bukapresensi, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
@@ -513,6 +520,38 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
                 var data = conn.Query<dynamic>(query, param).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateOUTMahasiswa(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
             }

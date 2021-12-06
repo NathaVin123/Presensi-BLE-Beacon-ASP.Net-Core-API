@@ -131,6 +131,22 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPut("PutOutMahasiswa")]
+        public ActionResult UpdateOutMhs([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswa(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpPut("PutINPresensiDosen")]
         public ActionResult UpdateINPresensiDsn([FromForm] UserUpdateINPresensiDosen uuipd)
         {
