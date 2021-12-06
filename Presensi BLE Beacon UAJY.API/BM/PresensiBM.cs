@@ -86,6 +86,60 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        public OutPutApi UpdateOUTMahasiswaToFBE(int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTMahasiswaToFBE(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdateOUTMahasiswaToFH(int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTMahasiswaToFH(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdateOUTMahasiswaToFISIP(int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTMahasiswaToFISIP(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdateOUTMahasiswaToFT(int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTMahasiswaToFT(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdateOUTMahasiswaToFTB(int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTMahasiswaToFTB(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi UpdateOUTMahasiswaToFTI(int idkelas, int pertemuan)
+        {
+            var data = dao.UpdateOUTMahasiswaToFTI(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
         public OutPutApi UpdateINPresensiDosen(int idkelas, int pertemuan)
         {
             var data = dao.UpdateINPresensiDosen(idkelas, pertemuan);

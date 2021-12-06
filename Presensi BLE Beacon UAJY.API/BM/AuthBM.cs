@@ -25,7 +25,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             var ul = dao.GetLoginMhs(npm);
             if (ul != null)
             {
-                if (cekpasswordMhs(password, ul.PASSWORD))
+                if (cekpassword(password, ul.PASSWORD))
                 {
                     if (ul.KD_STATUS_MHS == "A")
                     {
@@ -71,28 +71,14 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        private bool cekpasswordMhs(string password, string passwordDatabase)
-        {
-            Encoding enc = Encoding.GetEncoding(1252);
-            RIPEMD160 ripemdHasher = RIPEMD160.Create();
-            byte[] data = ripemdHasher.ComputeHash(Encoding.Default.GetBytes(password));
-            string str = enc.GetString(data);
-            if (str == passwordDatabase)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
 
         public OutPutApi LoginDsn(string npp, string password)
         {
-            var ul = dao.GetLoginDsn(npp);
-            if (ul != null)
+            var ul = dao.GetLoginDsn(npp);            if (ul != null)
             {
                 if (password == ul.PASSWORD)
+                // if(cekpassword(password, ul.PASSWORD))
                 {
                     if (ul.KD_STATUS_DOSEN == "A")
                     {
@@ -144,6 +130,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             if (ul != null)
             {
                 if (password == ul.PASSWORD)
+                // if(cekpassword(password, ul.PASSWORD))
                 {
                         var data = dao.GetProfileAdm(npp);
 
@@ -179,6 +166,22 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             }
 
             return output;
+        }
+
+        private bool cekpassword(string password, string passwordDatabase)
+        {
+            Encoding enc = Encoding.GetEncoding(1252);
+            RIPEMD160 ripemdHasher = RIPEMD160.Create();
+            byte[] data = ripemdHasher.ComputeHash(Encoding.Default.GetBytes(password));
+            string str = enc.GetString(data);
+            if (str == passwordDatabase)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

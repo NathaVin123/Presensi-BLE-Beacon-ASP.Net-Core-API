@@ -565,6 +565,198 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        public dynamic UpdateOUTMahasiswaToFBE(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE SIATMA_FBE.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateOUTMahasiswaToFH(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateOUTMahasiswaToFISIP(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE SIATMA_FISIP.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateOUTMahasiswaToFT(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE SIATMA_FT.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateOUTMahasiswaToFTB(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE SIATMA_FTB.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic UpdateOUTMahasiswaToFTI(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
+                //                 FULL OUTER JOIN TBL_KELAS kls ON kls.ID_KELAS = krs.ID_KELAS
+                //                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+                //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
+                //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
+
+                string query = @"UPDATE SIATMA_FTI.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                                WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
         public dynamic UpdateINPresensiDosen(int idkelas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();

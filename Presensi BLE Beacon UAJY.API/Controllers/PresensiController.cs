@@ -147,6 +147,102 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPut("PutOutMahasiswaToFBE")]
+        public ActionResult UpdateOutMhsToFBE([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswaToFBE(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("PutOutMahasiswaToFH")]
+        public ActionResult UpdateOutMhsToFH([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswaToFH(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("PutOutMahasiswaToFISIP")]
+        public ActionResult UpdateOutMhsToFISIP([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswaToFISIP(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("PutOutMahasiswaToFT")]
+        public ActionResult UpdateOutMhsToFT([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswaToFT(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("PutOutMahasiswaToFTB")]
+        public ActionResult UpdateOutMhsToFTB([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswaToFTB(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPut("PutOutMahasiswaToFTI")]
+        public ActionResult UpdateOutMhsToFTI([FromForm] UserUpdateOutMahasiswa uuom)
+        {
+            try
+            {
+                var data = bm.UpdateOUTMahasiswaToFTI(uuom.ID_KELAS, uuom.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
         [HttpPut("PutINPresensiDosen")]
         public ActionResult UpdateINPresensiDsn([FromForm] UserUpdateINPresensiDosen uuipd)
         {
