@@ -18,6 +18,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             bm = new PresensiBM();
         }
 
+        // Mendapatkan Kelas
+
         [AllowAnonymous]
         [HttpPost("PostGetListKelas")]
         public ActionResult ListKelasDsn([FromForm] UserListKelasDsn ulkd)
@@ -33,6 +35,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Mendapatkan Semua Kelas
 
         [AllowAnonymous]
         [HttpPost("PostGetAllListKelas")]
@@ -50,6 +54,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Mendapatkan Kelas Mahasiswa 
+
         [AllowAnonymous]
         [HttpPost("PostGetListKelasMhs")]
         public ActionResult ListKelasMhs([FromForm] UserListKelasMhs ulkm)
@@ -65,6 +71,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Mendapatkan Semua Kelas Mahasiswa 
 
         [AllowAnonymous]
         [HttpPost("PostGetAllListKelasMhs")]
@@ -82,6 +90,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Dosen Membuka Kelas
+
         [AllowAnonymous]
         [HttpPut("BukaPresensiDosen")]
         public ActionResult BukaKelasDsn([FromForm] UserBukaPresensiDosen ubpd)
@@ -97,6 +107,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Menampilkan Mahasiswa Yang Ada Di Kelas Tersebut
 
         [AllowAnonymous]
         [HttpPost("PostGetListPesertaKelas")]
@@ -114,6 +126,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Menampilkan Kehadiran Mahasiswa di Kelas
+
         [AllowAnonymous]
         [HttpPost("PostGetListKehadiranPesertaKelas")]
         public ActionResult ListKehadiranKelasMhs([FromForm] UserListKehadiranPesertaKelas ulkpk)
@@ -129,6 +143,122 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Dosen Mengeluarkan Mahasiswa Yang Tidak Hadir
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadir")]
+        public ActionResult InsertOutMhs([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadir(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadirToFBE")]
+        public ActionResult InsertOutMhsToFBE([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadirToFBE(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadirToFH")]
+        public ActionResult InsertOutMhsToFH([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadirToFH(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadirToFISIP")]
+        public ActionResult InsertOutMhsToFISIP([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadirToFISIP(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadirToFT")]
+        public ActionResult InsertOutMhsToFT([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadirToFT(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadirToFTB")]
+        public ActionResult InsertOutMhsToFTB([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadirToFTB(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("PostOutMahasiswaTidakHadirToFTI")]
+        public ActionResult InsertOutMhsToFTI([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        {
+            try
+            {
+                var data = bm.InsertOUTMahasiswaTidakHadirToFTI(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // Dosen Mengeluarkan Dosen Yang Hadir
 
         [AllowAnonymous]
         [HttpPut("PutOutMahasiswa")]
@@ -241,6 +371,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
+        // Update Presensi Dosen Check In - Check Out
 
         [AllowAnonymous]
         [HttpPut("PutINPresensiDosen")]
@@ -273,6 +405,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Presensi Masuk - Keluar Mahasiswa Manual Check In
 
         [AllowAnonymous]
         [HttpPost("PostInMhsToKSI")]

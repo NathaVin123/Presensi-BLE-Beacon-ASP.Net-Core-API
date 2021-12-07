@@ -531,6 +531,197 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        
+
+        public dynamic InsertOUTMahasiswaTidakHadirToKSI(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_PRESENSI_MHS, ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT 99999, krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertOUTMahasiswaTidakHadirToFBE(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FBE.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertOUTMahasiswaTidakHadirToFH(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FH.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertOUTMahasiswaTidakHadirToFISIP(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FISIP.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertOUTMahasiswaTidakHadirToFT(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertOUTMahasiswaTidakHadirToFTB(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FTB.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
+        public dynamic InsertOUTMahasiswaTidakHadirToFTI(int idkelas, int pertemuan)
+        {
+            SqlConnection conn = new SqlConnection();
+            try
+            {
+                conn = new SqlConnection(DBKoneksi.koneksi);
+
+                string query = @"INSERT INTO SIATMA_FTI.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                FROM TBL_KRS krs
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+
+                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Dispose();
+            }
+        }
+
         public dynamic UpdateOUTMahasiswa(int idkelas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();

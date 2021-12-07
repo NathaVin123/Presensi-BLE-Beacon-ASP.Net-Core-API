@@ -77,6 +77,69 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        public OutPutApi InsertOUTMahasiswaTidakHadir(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToKSI(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFBE(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToFBE(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFH(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToFH(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFISIP(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToFISIP(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFT(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToFT(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFTB(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToFTB(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFTI(int idkelas, int pertemuan)
+        {
+            var data = dao.InsertOUTMahasiswaTidakHadirToFTI(idkelas, pertemuan);
+
+            output.data = data;
+
+            return output;
+        }
+
         public OutPutApi UpdateOUTMahasiswa(int idkelas, int pertemuan)
         {
             var data = dao.UpdateOUTMahasiswa(idkelas, pertemuan);
