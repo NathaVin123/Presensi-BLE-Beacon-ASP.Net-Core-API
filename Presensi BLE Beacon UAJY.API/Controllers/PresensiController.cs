@@ -258,7 +258,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
-        // Dosen Mengeluarkan Dosen Yang Hadir
+        // Dosen Mengeluarkan Mahasiswa Yang Hadir
 
         [AllowAnonymous]
         [HttpPut("PutOutMahasiswa")]
