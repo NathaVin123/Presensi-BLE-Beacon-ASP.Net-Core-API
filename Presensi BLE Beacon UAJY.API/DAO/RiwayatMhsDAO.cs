@@ -72,7 +72,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 								FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
 								FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
 								FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
-							WHERE pmhs.NPM = @npm AND pmhs.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(SECOND,0,pmhs.TGL_IN)
+							WHERE pmhs.NPM = @npm AND pmhs.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP < DATEADD(MONTH,3,pmhs.TGL_IN) AND CURRENT_TIMESTAMP > DATEADD(SECOND,0,pmhs.TGL_IN)
 							ORDER BY CONVERT(date,pmhs.TGL_IN) DESC";
 
                 var param = new { NPM = npm };
@@ -152,7 +152,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
 	                            FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
 								FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
-                              WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(SECOND,0,pdsn.JAM_MASUK_SEHARUSNYA) 
+                              WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP < DATEADD(MONTH,3,pdsn.JAM_MASUK_SEHARUSNYA) AND CURRENT_TIMESTAMP > DATEADD(SECOND,0,pdsn.JAM_MASUK_SEHARUSNYA) 
                               ORDER BY CONVERT(date,JAM_MASUK_SEHARUSNYA) DESC";
 
                 var param = new { NPP = npp };

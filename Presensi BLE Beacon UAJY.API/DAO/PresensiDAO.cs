@@ -334,7 +334,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //               WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(minute,-15,pdsn.JAM_MASUK_SEHARUSNYA) AND CURRENT_TIMESTAMP < DATEADD(minute,+15,pdsn.JAM_KELUAR_SEHARUSNYA)
                 //               ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
-                string query = @"SELECT 
+                string query = @"SELECT
 									kls.ID_KELAS,
 		                            kls.NAMA_MK,
 									kls.KELAS,
@@ -446,8 +446,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        
-
         public dynamic DosenBukaPresensi(int idkelas, int bukapresensi, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
@@ -507,7 +505,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"SELECT 
+                string query = @"SELECT
                                     pmhs.NPM,
                                     mhs.NAMA_MHS,
                                     pmhs.STATUS,
@@ -547,7 +545,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -579,7 +577,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FBE.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE SIATMA_FBE.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -611,7 +609,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -643,7 +641,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FISIP.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE SIATMA_FISIP.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -675,7 +673,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FT.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE SIATMA_FT.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -707,7 +705,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FTB.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE SIATMA_FTB.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -739,7 +737,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FTI.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs                           
+                string query = @"UPDATE SIATMA_FTI.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
