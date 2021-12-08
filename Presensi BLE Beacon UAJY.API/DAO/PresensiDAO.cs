@@ -648,8 +648,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS, TGL_IN, TGL_OUT)
+                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-', '-', '-'
                                 FROM TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
 
