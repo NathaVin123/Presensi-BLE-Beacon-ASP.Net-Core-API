@@ -82,22 +82,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPut("SoftHapus")]
-        public ActionResult DeleteBcn([FromForm] UserDeleteBeacon udb)
-        {
-            try
-            {
-                var data = bm.DeleteBeacon(udb.UUID, udb.STATUS);
-
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [AllowAnonymous]
         [HttpPost("NamaDevice")]
         public ActionResult ListRngnDevice([FromForm] UserListRuanganNamaDevice ulrnd)
         {

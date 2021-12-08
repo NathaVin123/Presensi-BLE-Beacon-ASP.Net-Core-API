@@ -15,7 +15,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT
 									kls.ID_KELAS,
@@ -65,7 +65,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT
 									kls.ID_KELAS,
@@ -84,7 +84,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 									CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
 									CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
                                     pdsn.IS_BUKA_PRESENSI
-                              FROM  TBL_KELAS kls
+                              FROM TBL_KELAS kls
 	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
 	                            FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
 	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI

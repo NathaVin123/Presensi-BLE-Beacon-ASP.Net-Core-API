@@ -13,7 +13,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
                 // List Kelas Dosen Tanpa Waktu Beacon Not Null
                 // string query = @"SELECT
                 // 					kls.ID_KELAS,
@@ -167,7 +167,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 // string query = @"SELECT
                 // 				kls.ID_KELAS,
@@ -276,7 +276,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 // string query = @"SELECT
                 // 					kls.ID_KELAS,
@@ -394,7 +394,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT
 									kls.ID_KELAS,
@@ -451,7 +451,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN SET IS_BUKA_PRESENSI = @bukapresensi WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
@@ -475,7 +475,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT	mhs.NPM, mhs.NAMA_MHS FROM MST_MHS_AKTIF mhs
                                 JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -503,7 +503,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT
                                     pmhs.NPM,
@@ -538,10 +538,10 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_PRESENSI_MHS, ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT 99999, krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                SELECT 99999, krs.ID_KELAS, krs.NPM, @pertemuan, 'A'
                                 FROM TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
 
@@ -565,11 +565,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fbe);
 
-                string query = @"INSERT INTO SIATMA_FBE.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
-                                FROM TBL_KRS krs
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
+                                FROM SIATMA_UAJY.dbo.TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
@@ -592,11 +592,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fh);
 
-                string query = @"INSERT INTO SIATMA_FH.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
-                                FROM TBL_KRS krs
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
+                                FROM SIATMA_UAJY.dbo.TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
@@ -619,11 +619,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fisip);
 
-                string query = @"INSERT INTO SIATMA_FISIP.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
-                                FROM TBL_KRS krs
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
+                                FROM SIATMA_UAJY.dbo.TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
@@ -646,11 +646,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ft);
 
-                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
-                                FROM TBL_KRS krs
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
+                                FROM SIATMA_UAJY.dbo.TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
@@ -673,11 +673,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ftb);
 
-                string query = @"INSERT INTO SIATMA_FTB.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
-                                FROM TBL_KRS krs
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
+                                FROM SIATMA_UAJY.dbo.TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
@@ -700,11 +700,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fti);
 
-                string query = @"INSERT INTO SIATMA_FTI.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
-                                FROM TBL_KRS krs
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
+                                FROM SIATMA_UAJY.dbo.TBL_KRS krs
                                 WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
@@ -727,7 +727,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -759,7 +759,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fbe);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -768,7 +768,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FBE.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM SIATMA_UAJY.dbo.MST_MHS_AKTIF
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -791,7 +791,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fh);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -800,7 +800,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM SIATMA_UAJY.dbo.MST_MHS_AKTIF
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -823,7 +823,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fisip);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -832,7 +832,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FISIP.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM SIATMA_UAJY.dbo.MST_MHS_AKTIF
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -855,7 +855,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ft);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -864,7 +864,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FT.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM SIATMA_UAJY.dbo.MST_MHS_AKTIF
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -887,7 +887,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ftb);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -896,7 +896,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FTB.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM SIATMA_UAJY.dbo.MST_MHS_AKTIF
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -919,7 +919,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fti);
 
                 // string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
                 //                 FULL OUTER JOIN TBL_KRS krs ON mhs.NPM = krs.NPM
@@ -928,7 +928,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 //                 FULL OUTER JOIN TBL_PRESENSI_MHS pmhs ON mhs.NPM = pmhs.npm AND kls.ID_KELAS = pmhs.id_kelas AND pmhs.PERTEMUAN_KE = pdsn.PERTEMUAN_KE
                 //                 WHERE pdsn.ID_KELAS = @idkelas AND pdsn.PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND pmhs.STATUS IS NULL";
 
-                string query = @"UPDATE SIATMA_FTI.dbo.TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM MST_MHS_AKTIF mhs
+                string query = @"UPDATE TBL_PRESENSI_MHS SET TGL_OUT = CURRENT_TIMESTAMP, STATUS = 'H' FROM SIATMA_UAJY.dbo.MST_MHS_AKTIF
                                 WHERE ID_KELAS = @idkelas AND PERTEMUAN_KE = @pertemuan AND TGL_OUT IS NULL AND STATUS IS NULL";
 
                 var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
@@ -951,9 +951,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatmax_121212);
 
-                string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN
+                string query = @"UPDATE TBL_PRESENSI_DOSEN
                                 SET JAM_MASUK = CURRENT_TIMESTAMP
                                 WHERE ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
@@ -977,9 +977,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatmax_121212);
 
-                string query = @"UPDATE SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN
+                string query = @"UPDATE TBL_PRESENSI_DOSEN
                                 SET JAM_KELUAR = CURRENT_TIMESTAMP,
                                 KETERANGAN = @keterangan,
                                 MATERI = @materi
@@ -1005,7 +1005,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"INSERT INTO TBL_PRESENSI_MHS
                                 (ID_PRESENSI_MHS,
@@ -1040,7 +1040,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
@@ -1067,9 +1067,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fbe);
 
-                string query = @"INSERT INTO SIATMA_FBE.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
                                 VALUES (@idkelas, @npm, @pertemuan, CURRENT_TIMESTAMP)";
 
                 var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
@@ -1092,9 +1092,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fbe);
 
-                string query = @"UPDATE SIATMA_FBE.dbo.TBL_PRESENSI_MHS
+                string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
@@ -1119,9 +1119,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fh);
 
-                string query = @"INSERT INTO SIATMA_FH.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
                                 VALUES (@idkelas, @npm, @pertemuan, CURRENT_TIMESTAMP)";
 
                 var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
@@ -1144,9 +1144,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fh);
 
-                string query = @"UPDATE SIATMA_FH.dbo.TBL_PRESENSI_MHS
+                string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
@@ -1171,9 +1171,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fisip);
 
-                string query = @"INSERT INTO SIATMA_FISIP.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
                                 VALUES (@idkelas, @npm, @pertemuan, CURRENT_TIMESTAMP)";
 
                 var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
@@ -1196,9 +1196,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fisip);
 
-                string query = @"UPDATE SIATMA_FISIP.dbo.TBL_PRESENSI_MHS
+                string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
@@ -1223,9 +1223,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ft);
 
-                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
                                 VALUES (@idkelas, @npm, @pertemuan, CURRENT_TIMESTAMP)";
 
                 var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
@@ -1248,9 +1248,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ft);
 
-                string query = @"UPDATE SIATMA_FT.dbo.TBL_PRESENSI_MHS
+                string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
@@ -1275,9 +1275,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ftb);
 
-                string query = @"INSERT INTO SIATMA_FTB.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
                                 VALUES (@idkelas, @npm, @pertemuan, CURRENT_TIMESTAMP)";
 
                 var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
@@ -1300,9 +1300,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_ftb);
 
-                string query = @"UPDATE SIATMA_FTB.dbo.TBL_PRESENSI_MHS
+                string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";
@@ -1327,9 +1327,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fti);
 
-                string query = @"INSERT INTO SIATMA_FTI.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
+                string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, TGL_IN)
                                 VALUES (@idkelas, @npm, @pertemuan, CURRENT_TIMESTAMP)";
 
                 var param = new { IDKELAS = idkelas, NPM = npm, PERTEMUAN = pertemuan };
@@ -1352,9 +1352,9 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_fti);
 
-                string query = @"UPDATE SIATMA_FTI.dbo.TBL_PRESENSI_MHS
+                string query = @"UPDATE TBL_PRESENSI_MHS
                                 SET TGL_OUT = CURRENT_TIMESTAMP,
                                 STATUS = @status
                                 WHERE ID_Kelas = @idkelas AND NPM = @npm AND PERTEMUAN_KE = @pertemuan";

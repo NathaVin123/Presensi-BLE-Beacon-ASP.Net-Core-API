@@ -15,7 +15,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 // string query = @"SELECT
 				// 					kls.ID_KELAS,
@@ -96,7 +96,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
                 // Query menampilkan riwayat dalam rentang 6 bulan
                 // string query = @"SELECT
 				// 					kls.ID_KELAS,

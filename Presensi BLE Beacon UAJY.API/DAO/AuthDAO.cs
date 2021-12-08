@@ -12,7 +12,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
                 string query = @"SELECT TOP (1)
                                     m.NPM,
                                     m.NAMA_MHS,
@@ -41,39 +41,17 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
-
-                // string query = @"SELECT TOP (1)
-	            //                     m.NPM,
-	            //                     m.NAMA_MHS,
-				// 					foto.foto,
-	            //                     m.TMP_LAHIR,
-	            //                     m.TGL_LAHIR,
-	            //                     m.ALAMAT,
-	            //                     f.FAKULTAS,
-	            //                     p.PRODI,
-	            //                     d.NAMA_DOSEN_LENGKAP AS 'DSN_PEMBIMBING_AKADEMIK'
-                //                 FROM dbo.MST_MHS_AKTIF m
-	            //                     JOIN dbo.REF_PRODI p ON m.ID_PRODI = p.ID_PRODI
-	            //                     JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
-	            //                     JOIN dbo.MST_DOSEN d ON m.NPP_PEMBIMBING_AKADEMIK = d.NPP
-				// 					JOIN dbo.mst_mhs_foto foto ON m.NPM = foto.npm
-                //                 WHERE (m.NPM = @npm)";
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT TOP (1)
 	                                m.NPM,
 	                                m.NAMA_MHS,
-	                                m.TMP_LAHIR,
-	                                m.TGL_LAHIR,
 	                                m.ALAMAT,
 	                                f.FAKULTAS,
-	                                p.PRODI,
-	                                d.NAMA_DOSEN_LENGKAP AS 'DSN_PEMBIMBING_AKADEMIK'
-                                FROM dbo.MST_MHS_AKTIF m
-	                                JOIN dbo.REF_PRODI p ON m.ID_PRODI = p.ID_PRODI
-	                                JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
-	                                JOIN dbo.MST_DOSEN d ON m.NPP_PEMBIMBING_AKADEMIK = d.NPP
-									JOIN dbo.mst_mhs_foto foto ON m.NPM = foto.npm
+	                                p.PRODI
+                                FROM MST_MHS_AKTIF m
+	                                JOIN REF_PRODI p ON m.ID_PRODI = p.ID_PRODI
+	                                JOIN REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
                                 WHERE (m.NPM = @npm)";
 
                 var param = new { NPM = npm };
@@ -96,7 +74,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
                 string query = @"SELECT TOP (1)
                                     d.NPP,
                                     d.NAMA_DOSEN_LENGKAP,
@@ -126,36 +104,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
-                // string query = @"SELECT TOP (1)
-	            //                     d.NPP,
-	            //                     d.NAMA_DOSEN_LENGKAP,
-				// 					k.FILE_FOTO,
-	            //                     d.TEMPAT_LAHIR,
-	            //                     d.TGL_LAHIR,
-	            //                     k.PASSWORD,
-	            //                     d.KD_STATUS_DOSEN,
-	            //                     p.PRODI,
-	            //                     f.FAKULTAS
-                //                 FROM dbo.MST_DOSEN d
-	            //                     JOIN simka.MST_KARYAWAN k ON D.NPP = K.NPP
-	            //                     JOIN dbo.REF_PRODI p ON d.ID_PRODI = p.ID_PRODI
-	            //                     JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
-                //                 WHERE (D.NPP = @npp)";
+                
                  string query = @"SELECT TOP (1)
 	                                d.NPP,
 	                                d.NAMA_DOSEN_LENGKAP,
-	                                d.TEMPAT_LAHIR,
-	                                d.TGL_LAHIR,
-	                                k.PASSWORD,
-	                                d.KD_STATUS_DOSEN,
 	                                p.PRODI,
-	                                f.FAKULTAS
-                                FROM dbo.MST_DOSEN d
-	                                JOIN SIATMAX_121212.simka.MST_KARYAWAN k ON D.NPP = K.NPP
-	                                JOIN dbo.REF_PRODI p ON d.ID_PRODI = p.ID_PRODI
-	                                JOIN dbo.REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
+	                                f.FAKULTAS,
+                                    d.KD_STATUS_DOSEN
+                                FROM MST_DOSEN d
+	                                JOIN REF_PRODI p ON d.ID_PRODI = p.ID_PRODI
+	                                JOIN REF_FAKULTAS f ON p.ID_FAKULTAS = f.ID_FAKULTAS
                                 WHERE (D.NPP = @npp)";
 
                 var param = new { NPP = npp };
@@ -177,11 +137,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatmax_121212);
                 string query = @"SELECT TOP (1) 
                                     NPP,
                                     PASSWORD
-                                FROM SIATMAX_121212.simka.MST_KARYAWAN
+                                FROM simka.MST_KARYAWAN
                                 WHERE (NPP = @npp)";
 
                 var param = new { npp = npp };
@@ -204,12 +164,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatmax_121212);
                  string query = @"SELECT TOP (1) 
                                     NPP,
                                     NAMA_LENGKAP_GELAR,
                                     PASSWORD
-                                FROM SIATMAX_121212.simka.MST_KARYAWAN
+                                FROM simka.MST_KARYAWAN
                                 WHERE (NPP = @npp)";
 
                 var param = new { NPP = npp };

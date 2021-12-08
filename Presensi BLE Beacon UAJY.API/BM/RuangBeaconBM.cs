@@ -20,7 +20,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
 
         public OutPutApi RuangBeacon()
         {
-            var data = dao.GetScanningKelasBeacon();
+            var data = dao.GetBeacon();
 
             output.data = data;
 

@@ -8,12 +8,12 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 {
     public class RuangBeaconDAO
     {
-        public dynamic GetScanningKelasBeacon()
+        public dynamic GetBeacon()
         {
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT
 		                            kls.NAMA_MK,
@@ -50,7 +50,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"INSERT INTO SIATMAX_121212.dbo.REF_BEACON 
                                     (PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC, MAJOR, MINOR) 
@@ -77,7 +77,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT PROXIMITY_UUID, NAMA_DEVICE, JARAK_MIN_DEC, STATUS, MAJOR, MINOR 
                                 FROM SIATMAX_121212.dbo.REF_BEACON 
@@ -102,7 +102,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET NAMA_DEVICE = @nama_device, JARAK_MIN_DEC = @jarak_min, MAJOR = @major, MINOR = @minor 
                                 WHERE PROXIMITY_UUID = @uuid";
@@ -127,7 +127,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET STATUS = @status
                                 WHERE PROXIMITY_UUID = @uuid";
@@ -152,7 +152,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT b.NAMA_DEVICE FROM MST_RUANG r 
                                     JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
@@ -180,7 +180,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 // string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI, b.NAMA_DEVICE FROM MST_RUANG r 
                 //                     JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
@@ -211,7 +211,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"SELECT r.RUANG, f.FAKULTAS, p.PRODI, b.NAMA_DEVICE, b.PROXIMITY_UUID, b.JARAK_MIN_DEC FROM MST_RUANG r 
                                     JOIN REF_FAKULTAS f ON r.ID_FAKULTAS = f.ID_FAKULTAS 
@@ -237,7 +237,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             SqlConnection conn = new SqlConnection();
             try
             {
-                conn = new SqlConnection(DBKoneksi.koneksi);
+                conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
                 string query = @"UPDATE MST_RUANG SET ID_BEACON = 
                                 (SELECT ID_BEACON FROM SIATMAX_121212.dbo.REF_BEACON WHERE NAMA_DEVICE = @nama_device)
