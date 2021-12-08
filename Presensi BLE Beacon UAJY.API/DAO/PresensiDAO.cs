@@ -560,7 +560,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertOUTMahasiswaTidakHadirToFBE(int idkelas, int pertemuan)
+        public dynamic InsertOUTMahasiswaTidakHadirToFBE(int idkelas, int idkelasfakultas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -568,11 +568,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FBE.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
                                 FROM TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
-                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -587,7 +587,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertOUTMahasiswaTidakHadirToFH(int idkelas, int pertemuan)
+        public dynamic InsertOUTMahasiswaTidakHadirToFH(int idkelas, int idkelasfakultas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -595,11 +595,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FH.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
                                 FROM TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
-                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -614,7 +614,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertOUTMahasiswaTidakHadirToFISIP(int idkelas, int pertemuan)
+        public dynamic InsertOUTMahasiswaTidakHadirToFISIP(int idkelas, int idkelasfakultas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -622,11 +622,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FISIP.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
                                 FROM TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
-                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -641,19 +641,19 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertOUTMahasiswaTidakHadirToFT(int idkelas, int pertemuan)
+        public dynamic InsertOUTMahasiswaTidakHadirToFT(int idkelas, int idkelasfakultas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
             {
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
-                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS, TGL_IN, TGL_OUT)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-', '-', '-'
+                string query = @"INSERT INTO SIATMA_FT.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
                                 FROM TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
-                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -668,7 +668,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertOUTMahasiswaTidakHadirToFTB(int idkelas, int pertemuan)
+        public dynamic InsertOUTMahasiswaTidakHadirToFTB(int idkelas, int idkelasfakultas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -676,11 +676,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FTB.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
                                 FROM TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
-                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -695,7 +695,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic InsertOUTMahasiswaTidakHadirToFTI(int idkelas, int pertemuan)
+        public dynamic InsertOUTMahasiswaTidakHadirToFTI(int idkelas, int idkelasfakultas, int pertemuan)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -703,11 +703,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.koneksi);
 
                 string query = @"INSERT INTO SIATMA_FTI.dbo.TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
-                                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, '-'
+                                SELECT @idkelasfakultas, krs.NPM, @pertemuan, '-'
                                 FROM TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
 
-                var param = new { IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;

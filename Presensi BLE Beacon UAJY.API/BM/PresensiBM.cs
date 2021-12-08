@@ -86,54 +86,54 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi InsertOUTMahasiswaTidakHadirToFBE(int idkelas, int pertemuan)
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFBE(int idkelas, int idkelasfakultas, int pertemuan)
         {
-            var data = dao.InsertOUTMahasiswaTidakHadirToFBE(idkelas, pertemuan);
+            var data = dao.InsertOUTMahasiswaTidakHadirToFBE(idkelas, idkelasfakultas, pertemuan);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi InsertOUTMahasiswaTidakHadirToFH(int idkelas, int pertemuan)
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFH(int idkelas, int idkelasfakultas, int pertemuan)
         {
-            var data = dao.InsertOUTMahasiswaTidakHadirToFH(idkelas, pertemuan);
+            var data = dao.InsertOUTMahasiswaTidakHadirToFH(idkelas, idkelasfakultas, pertemuan);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi InsertOUTMahasiswaTidakHadirToFISIP(int idkelas, int pertemuan)
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFISIP(int idkelas, int idkelasfakultas, int pertemuan)
         {
-            var data = dao.InsertOUTMahasiswaTidakHadirToFISIP(idkelas, pertemuan);
+            var data = dao.InsertOUTMahasiswaTidakHadirToFISIP(idkelas, idkelasfakultas, pertemuan);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi InsertOUTMahasiswaTidakHadirToFT(int idkelas, int pertemuan)
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFT(int idkelas, int idkelasfakultas, int pertemuan)
         {
-            var data = dao.InsertOUTMahasiswaTidakHadirToFT(idkelas, pertemuan);
+            var data = dao.InsertOUTMahasiswaTidakHadirToFT(idkelas, idkelasfakultas, pertemuan);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi InsertOUTMahasiswaTidakHadirToFTB(int idkelas, int pertemuan)
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFTB(int idkelas, int idkelasfakultas, int pertemuan)
         {
-            var data = dao.InsertOUTMahasiswaTidakHadirToFTB(idkelas, pertemuan);
+            var data = dao.InsertOUTMahasiswaTidakHadirToFTB(idkelas, idkelasfakultas, pertemuan);
 
             output.data = data;
 
             return output;
         }
 
-        public OutPutApi InsertOUTMahasiswaTidakHadirToFTI(int idkelas, int pertemuan)
+        public OutPutApi InsertOUTMahasiswaTidakHadirToFTI(int idkelas, int idkelasfakultas, int pertemuan)
         {
-            var data = dao.InsertOUTMahasiswaTidakHadirToFTI(idkelas, pertemuan);
+            var data = dao.InsertOUTMahasiswaTidakHadirToFTI(idkelas, idkelasfakultas, pertemuan);
 
             output.data = data;
 

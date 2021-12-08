@@ -164,11 +164,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("PostOutMahasiswaTidakHadirToFBE")]
-        public ActionResult InsertOutMhsToFBE([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        public ActionResult InsertOutMhsToFBE([FromForm] UserInsertOutMhsTidakHadirFakultas uiomthf)
         {
             try
             {
-                var data = bm.InsertOUTMahasiswaTidakHadirToFBE(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+                var data = bm.InsertOUTMahasiswaTidakHadirToFBE(uiomthf.ID_KELAS,uiomthf.ID_KELAS_FAKULTAS, uiomthf.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -180,11 +180,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("PostOutMahasiswaTidakHadirToFH")]
-        public ActionResult InsertOutMhsToFH([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        public ActionResult InsertOutMhsToFH([FromForm] UserInsertOutMhsTidakHadirFakultas uiomthf)
         {
             try
             {
-                var data = bm.InsertOUTMahasiswaTidakHadirToFH(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+                var data = bm.InsertOUTMahasiswaTidakHadirToFH(uiomthf.ID_KELAS,uiomthf.ID_KELAS_FAKULTAS, uiomthf.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -196,11 +196,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("PostOutMahasiswaTidakHadirToFISIP")]
-        public ActionResult InsertOutMhsToFISIP([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        public ActionResult InsertOutMhsToFISIP([FromForm] UserInsertOutMhsTidakHadirFakultas uiomthf)
         {
             try
             {
-                var data = bm.InsertOUTMahasiswaTidakHadirToFISIP(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+                var data = bm.InsertOUTMahasiswaTidakHadirToFISIP(uiomthf.ID_KELAS,uiomthf.ID_KELAS_FAKULTAS, uiomthf.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -212,11 +212,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("PostOutMahasiswaTidakHadirToFT")]
-        public ActionResult InsertOutMhsToFT([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        public ActionResult InsertOutMhsToFT([FromForm] UserInsertOutMhsTidakHadirFakultas uiomthf)
         {
             try
             {
-                var data = bm.InsertOUTMahasiswaTidakHadirToFT(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+                var data = bm.InsertOUTMahasiswaTidakHadirToFT(uiomthf.ID_KELAS,uiomthf.ID_KELAS_FAKULTAS, uiomthf.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -228,11 +228,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("PostOutMahasiswaTidakHadirToFTB")]
-        public ActionResult InsertOutMhsToFTB([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        public ActionResult InsertOutMhsToFTB([FromForm] UserInsertOutMhsTidakHadirFakultas uiomthf)
         {
             try
             {
-                var data = bm.InsertOUTMahasiswaTidakHadirToFTB(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+                var data = bm.InsertOUTMahasiswaTidakHadirToFTB(uiomthf.ID_KELAS,uiomthf.ID_KELAS_FAKULTAS, uiomthf.PERTEMUAN_KE);
 
                 return Ok(data);
             }
@@ -244,11 +244,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("PostOutMahasiswaTidakHadirToFTI")]
-        public ActionResult InsertOutMhsToFTI([FromForm] UserInsertOutMhsTidakHadir uiomth)
+        public ActionResult InsertOutMhsToFTI([FromForm] UserInsertOutMhsTidakHadirFakultas uiomthf)
         {
             try
             {
-                var data = bm.InsertOUTMahasiswaTidakHadirToFTI(uiomth.ID_KELAS, uiomth.PERTEMUAN_KE);
+                var data = bm.InsertOUTMahasiswaTidakHadirToFTI(uiomthf.ID_KELAS,uiomthf.ID_KELAS_FAKULTAS, uiomthf.PERTEMUAN_KE);
 
                 return Ok(data);
             }
