@@ -23,14 +23,14 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi ListAllKelasDsn(string npp)
-        {
-            var data = dao.GetAllListKelasDosen(npp);
+        // public OutPutApi ListAllKelasDsn(string npp)
+        // {
+        //     var data = dao.GetAllListKelasDosen(npp);
 
-            output.data = data;
+        //     output.data = data;
 
-            return output;
-        }
+        //     return output;
+        // }
 
         public OutPutApi ListKelasMhs(string npm)
         {
@@ -41,14 +41,14 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        public OutPutApi ListAllKelasMhs(string npm)
-        {
-            var data = dao.GetAllListKelasMahasiswa(npm);
+        // public OutPutApi ListAllKelasMhs(string npm)
+        // {
+        //     var data = dao.GetAllListKelasMahasiswa(npm);
 
-            output.data = data;
+        //     output.data = data;
 
-            return output;
-        }
+        //     return output;
+        // }
 
         public OutPutApi DosenBukaPresensi(int idkelas, int bukapresensi, int pertemuan)
         {

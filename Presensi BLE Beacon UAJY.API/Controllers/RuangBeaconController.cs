@@ -37,14 +37,17 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         [HttpPost("Tambah")]
         public ActionResult TambahBcn([FromForm] UserTambahBeacon utb)
         {
+            OutPutApi output = new OutPutApi();
             try
             {
                 var data = bm.TambahBeacon(utb.UUID, utb.NAMA_DEVICE, utb.JARAK_MIN, utb.MAJOR, utb.MINOR);
 
-                return Ok(data);
+                output.data = "Data Beacon Berhasil Ditambahkan";
+                return Ok(output);
             }
             catch (Exception ex)
             {
+                output.error = "Data Beacon Gagal Ditambahkan";
                 return BadRequest(ex.Message);
             }
         }
@@ -53,6 +56,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         [HttpGet("Tampil")]
         public ActionResult ListBcn()
         {
+
             try
             {
                 var data = bm.ListBeacon();
@@ -69,14 +73,16 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         [HttpPut("Ubah")]
         public ActionResult UpdateBcn([FromForm] UserUpdateBeacon uub)
         {
+            OutPutApi output = new OutPutApi();
             try
             {
                 var data = bm.UpdateBeacon(uub.UUID, uub.NAMA_DEVICE, uub.JARAK_MIN, uub.MAJOR, uub.MINOR);
-
-                return Ok(data);
+                output.data = "Data Beacon Berhasil Diubah";
+                return Ok(output);
             }
             catch (Exception ex)
             {
+                output.error = "Data Beacon Gagal Diubah";
                 return BadRequest(ex.Message);
             }
         }
@@ -133,11 +139,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         [HttpPut("UbahRuangBeacon")]
         public ActionResult UpdateRuangBcn([FromForm] UserUpdateRuangBeacon uurb)
         {
+            OutPutApi output = new OutPutApi();
             try
             {
-                var data = bm.UpdateRuangBeacon(uurb.RUANG, uurb.NAMA_DEVICE);
-
-                return Ok(data);
+                if(uurb.RUANG != null && uurb.NAMA_DEVICE != null)
+                {
+                    var data = bm.UpdateRuangBeacon(uurb.RUANG, uurb.NAMA_DEVICE);
+                    output.data = "Data Ruangan Berhasil Diubah";
+                    return Ok(output);
+                }
+                else
+                {
+                    output.error = "Data Ruangan Gagal Diubah";
+                    return Ok(output);
+                }
+                
             }
             catch (Exception ex)
             {

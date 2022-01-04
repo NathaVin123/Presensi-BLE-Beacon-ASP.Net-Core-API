@@ -38,21 +38,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         // Mendapatkan Semua Kelas
 
-        [AllowAnonymous]
-        [HttpPost("PostGetAllListKelas")]
-        public ActionResult ListAllKelasDsn([FromForm] UserListKelasDsn ulkd)
-        {
-            try
-            {
-                var data = bm.ListAllKelasDsn(ulkd.NPP);
+        // [AllowAnonymous]
+        // [HttpPost("PostGetAllListKelas")]
+        // public ActionResult ListAllKelasDsn([FromForm] UserListKelasDsn ulkd)
+        // {
+        //     try
+        //     {
+        //         var data = bm.ListAllKelasDsn(ulkd.NPP);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
         // Mendapatkan Kelas Mahasiswa 
 
@@ -74,21 +74,21 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
 
         // Mendapatkan Semua Kelas Mahasiswa 
 
-        [AllowAnonymous]
-        [HttpPost("PostGetAllListKelasMhs")]
-        public ActionResult ListAllKelasMhs([FromForm] UserListKelasMhs ulkm)
-        {
-            try
-            {
-                var data = bm.ListAllKelasMhs(ulkm.NPM);
+        // [AllowAnonymous]
+        // [HttpPost("PostGetAllListKelasMhs")]
+        // public ActionResult ListAllKelasMhs([FromForm] UserListKelasMhs ulkm)
+        // {
+        //     try
+        //     {
+        //         var data = bm.ListAllKelasMhs(ulkm.NPM);
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //         return Ok(data);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
         // Dosen Membuka Kelas
 
@@ -394,17 +394,23 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
         [HttpPut("PutOUTPresensiDosen")]
         public ActionResult UpdateOUTPresensiDsn([FromForm] UserUpdateOUTPresensiDosen uuopd)
         {
+
             try
             {
+                
+                Console.WriteLine(" Mulai  : {0:HH:mm:ss tt}", DateTime.Now);
                 var data = bm.UpdateOUTPresensiDosen(uuopd.KETERANGAN, uuopd.MATERI, uuopd.ID_KELAS, uuopd.PERTEMUAN_KE);
+                Console.WriteLine(" Akhir : {0:HH:mm:ss tt}", DateTime.Now);
 
                 return Ok(data);
+
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-        }
+
+        }  
 
         // Presensi Masuk - Keluar Mahasiswa Manual Check In
 

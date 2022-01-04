@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Presensi_BLE_Beacon_UAJY.API.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -47,6 +48,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 
         public dynamic TambahBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
+            OutPutApi output = new OutPutApi();
             SqlConnection conn = new SqlConnection();
             try
             {

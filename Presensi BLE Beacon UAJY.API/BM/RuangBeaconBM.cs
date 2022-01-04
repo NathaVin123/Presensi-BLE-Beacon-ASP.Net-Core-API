@@ -20,9 +20,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
 
         public OutPutApi RuangBeacon()
         {
-            var data = dao.GetBeacon();
 
-            output.data = data;
+            var data = dao.GetBeacon();
+            if (data != null)
+            {
+                output.data = data;
+            }
+            else
+            {
+                output.error = "Data Beacon Gagal Ditampilkan";
+                output.data = new { };
+            }
+                
 
             return output;
         }
@@ -30,17 +39,24 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
         public OutPutApi TambahBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
             var data = dao.TambahBeacon(uuid, nama_device, jarak_min, major, minor);
-
+            
             output.data = data;
-
+           
             return output;
         }
 
         public OutPutApi ListBeacon()
         {
             var data = dao.GetListBeacon();
-
-            output.data = data;
+            if (data != null)
+            {
+                output.data = data;
+            }
+            else
+            {
+                output.error = "Data Beacon Gagal Ditampilkan";
+                output.data = new { };
+            }
 
             return output;
         }
@@ -48,26 +64,33 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
         public OutPutApi UpdateBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
             var data = dao.UpdateBeacon(uuid, nama_device, jarak_min, major, minor);
-
-            output.data = data;
-
+            
+            output.data = data; 
+            
             return output;
         }
 
         public OutPutApi DeleteBeacon(string uuid, int status)
         {
             var data = dao.DeleteBeacon(uuid, status);
-
+           
             output.data = data;
-
+           
             return output;
         }
 
         public OutPutApi ListRuanganNamaDevice(string ruang)
         {
             var data = dao.PostListRuanganNamaDevice(ruang);
-
-            output.data = data;
+            if (data != null)
+            {
+                output.data = data;
+            }
+            else
+            {
+                output.error = "Data Ruangan Gagal Ditampilkan";
+                output.data = new { };
+            }
 
             return output;
         }
@@ -76,7 +99,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
         {
             var data = dao.GetListRuangan();
 
-            output.data = data;
+            if (data != null)
+            {
+                output.data = data;
+            }
+            else
+            {
+                output.error = "Data Ruangan Gagal Ditampilkan";
+                output.data = new { };
+            }
 
             return output;
         }
@@ -85,7 +116,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
         {
             var data = dao.GetListDetailRuangan();
 
-            output.data = data;
+            if (data != null)
+            {
+                output.data = data;
+            }
+            else
+            {
+                output.error = "Data Detail Ruangan Gagal Ditampilkan";
+                output.data = new { };
+            }
 
             return output;
         }
@@ -95,7 +134,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             var data = dao.UpdateRuangBeacon(ruang, nama_device);
 
             output.data = data;
-
+           
             return output;
         }
     }

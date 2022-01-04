@@ -162,114 +162,114 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic GetAllListKelasDosen(string npp)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.siatma_uajy);
+        // public dynamic GetAllListKelasDosen(string npp)
+        // {
+        //     SqlConnection conn = new SqlConnection();
+        //     try
+        //     {
+        //         conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
-                // string query = @"SELECT
-                // 				kls.ID_KELAS,
-                //                 kls.NAMA_MK,
-                // 				kls.KELAS,
-                // 				d1.NPP AS NPP_DOSEN1,
-                // 				d1.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN1,
-                // 				d2.NPP AS NPP_DOSEN2,
-                // 				d2.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN2,
-                // 				d3.NPP AS NPP_DOSEN3,
-                // 				d3.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN3,
-                // 				d4.NPP AS NPP_DOSEN4,
-                // 				d4.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN4,
-                //                 h1.HARI AS HARI1,
-                // 				h2.HARI AS HARI2,
-                // 				h3.HARI AS HARI3,
-                // 				h4.HARI AS HARI4,
-                //                 s1.SESI AS SESI1,
-                // 				s2.SESI AS SESI2,
-                // 				s3.SESI AS SESI3,
-                // 				s4.SESI AS SESI4,
-                // 				kls.SKS,
-                // 				pdsn.PERTEMUAN_KE,
-                // 				r.RUANG,
-                //                 b.PROXIMITY_UUID,
-                //                 b.NAMA_DEVICE,
-                //                 b.JARAK_MIN_DEC,
-                //                 b.MAJOR,
-                //                 b.MINOR,
-                // 				kls.KAPASITAS_KELAS,
-                //                 CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 106) AS TGL_MASUK_SEHARUSNYA,
-                // 				CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 106) AS TGL_KELUAR_SEHARUSNYA,
-                // 				CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
-                // 				CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
-                //                 pdsn.IS_BUKA_PRESENSI,
-                //                 CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
-                //           FROM  TBL_KELAS kls
-                //             JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
-                //             FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
-                // 			FULL OUTER JOIN REF_HARI h2 ON kls.ID_HARI2 = h2.ID_HARI
-                // 			FULL OUTER JOIN REF_HARI h3 ON kls.ID_HARI3 = h3.ID_HARI
-                // 			FULL OUTER JOIN REF_HARI h4 ON kls.ID_HARI4 = h4.ID_HARI
-                //             FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
-                // 			FULL OUTER JOIN REF_SESI s2 ON kls.ID_SESI_KULIAH2 = s2.ID_SESI
-                // 			FULL OUTER JOIN REF_SESI s3 ON kls.ID_SESI_KULIAH3 = s3.ID_SESI
-                // 			FULL OUTER JOIN REF_SESI s4 ON kls.ID_SESI_KULIAH4 = s4.ID_SESI
-                //             FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
-                // 			FULL OUTER JOIN MST_DOSEN d2 ON kls.NPP_DOSEN2 = d2.NPP
-                // 			FULL OUTER JOIN MST_DOSEN d3 ON kls.NPP_DOSEN3 = d3.NPP
-                // 			FULL OUTER JOIN MST_DOSEN d4 ON kls.NPP_DOSEN4 = d4.NPP
-                //             FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
-                // 			FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
-                //           WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL
-                //           ORDER BY pdsn.IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
+        //         // string query = @"SELECT
+        //         // 				kls.ID_KELAS,
+        //         //                 kls.NAMA_MK,
+        //         // 				kls.KELAS,
+        //         // 				d1.NPP AS NPP_DOSEN1,
+        //         // 				d1.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN1,
+        //         // 				d2.NPP AS NPP_DOSEN2,
+        //         // 				d2.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN2,
+        //         // 				d3.NPP AS NPP_DOSEN3,
+        //         // 				d3.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN3,
+        //         // 				d4.NPP AS NPP_DOSEN4,
+        //         // 				d4.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN4,
+        //         //                 h1.HARI AS HARI1,
+        //         // 				h2.HARI AS HARI2,
+        //         // 				h3.HARI AS HARI3,
+        //         // 				h4.HARI AS HARI4,
+        //         //                 s1.SESI AS SESI1,
+        //         // 				s2.SESI AS SESI2,
+        //         // 				s3.SESI AS SESI3,
+        //         // 				s4.SESI AS SESI4,
+        //         // 				kls.SKS,
+        //         // 				pdsn.PERTEMUAN_KE,
+        //         // 				r.RUANG,
+        //         //                 b.PROXIMITY_UUID,
+        //         //                 b.NAMA_DEVICE,
+        //         //                 b.JARAK_MIN_DEC,
+        //         //                 b.MAJOR,
+        //         //                 b.MINOR,
+        //         // 				kls.KAPASITAS_KELAS,
+        //         //                 CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 106) AS TGL_MASUK_SEHARUSNYA,
+        //         // 				CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 106) AS TGL_KELUAR_SEHARUSNYA,
+        //         // 				CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
+        //         // 				CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
+        //         //                 pdsn.IS_BUKA_PRESENSI,
+        //         //                 CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
+        //         //           FROM  TBL_KELAS kls
+        //         //             JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
+        //         //             FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
+        //         // 			FULL OUTER JOIN REF_HARI h2 ON kls.ID_HARI2 = h2.ID_HARI
+        //         // 			FULL OUTER JOIN REF_HARI h3 ON kls.ID_HARI3 = h3.ID_HARI
+        //         // 			FULL OUTER JOIN REF_HARI h4 ON kls.ID_HARI4 = h4.ID_HARI
+        //         //             FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
+        //         // 			FULL OUTER JOIN REF_SESI s2 ON kls.ID_SESI_KULIAH2 = s2.ID_SESI
+        //         // 			FULL OUTER JOIN REF_SESI s3 ON kls.ID_SESI_KULIAH3 = s3.ID_SESI
+        //         // 			FULL OUTER JOIN REF_SESI s4 ON kls.ID_SESI_KULIAH4 = s4.ID_SESI
+        //         //             FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
+        //         // 			FULL OUTER JOIN MST_DOSEN d2 ON kls.NPP_DOSEN2 = d2.NPP
+        //         // 			FULL OUTER JOIN MST_DOSEN d3 ON kls.NPP_DOSEN3 = d3.NPP
+        //         // 			FULL OUTER JOIN MST_DOSEN d4 ON kls.NPP_DOSEN4 = d4.NPP
+        //         //             FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+        //         // 			FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+        //         //           WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL
+        //         //           ORDER BY pdsn.IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
-                string query = @"SELECT
-									kls.ID_KELAS,
-		                            kls.NAMA_MK,
-									kls.KELAS,
-									d1.NPP AS NPP_DOSEN1,
-									d1.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN1,
-		                            h1.HARI AS HARI1,
-		                            s1.SESI AS SESI1,
-									kls.SKS,
-									pdsn.PERTEMUAN_KE,
-									r.RUANG,
-		                            b.PROXIMITY_UUID,
-		                            b.NAMA_DEVICE,
-                                    b.JARAK_MIN_DEC,
-                                    b.MAJOR,
-                                    b.MINOR,
-									kls.KAPASITAS_KELAS,
-                                    CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 106) AS TGL_MASUK_SEHARUSNYA,
-									CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 106) AS TGL_KELUAR_SEHARUSNYA,
-									CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
-									CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
-                                    pdsn.IS_BUKA_PRESENSI,
-                                    CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
-                              FROM  TBL_KELAS kls
-	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
-	                            FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
-	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
-	                            FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
-	                            FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
-								FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
-                              WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL
-                              ORDER BY pdsn.IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
+        //         string query = @"SELECT
+		// 							kls.ID_KELAS,
+		//                             kls.NAMA_MK,
+		// 							kls.KELAS,
+		// 							d1.NPP AS NPP_DOSEN1,
+		// 							d1.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN1,
+		//                             h1.HARI AS HARI1,
+		//                             s1.SESI AS SESI1,
+		// 							kls.SKS,
+		// 							pdsn.PERTEMUAN_KE,
+		// 							r.RUANG,
+		//                             b.PROXIMITY_UUID,
+		//                             b.NAMA_DEVICE,
+        //                             b.JARAK_MIN_DEC,
+        //                             b.MAJOR,
+        //                             b.MINOR,
+		// 							kls.KAPASITAS_KELAS,
+        //                             CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 106) AS TGL_MASUK_SEHARUSNYA,
+		// 							CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 106) AS TGL_KELUAR_SEHARUSNYA,
+		// 							CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
+		// 							CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
+        //                             pdsn.IS_BUKA_PRESENSI,
+        //                             CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
+        //                       FROM  TBL_KELAS kls
+	    //                         JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
+	    //                         FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
+	    //                         FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
+	    //                         FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
+	    //                         FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+		// 						FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+        //                       WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL
+        //                       ORDER BY pdsn.IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
-                var param = new { NPP = npp };
-                var data = conn.Query<dynamic>(query, param).ToList();
+        //         var param = new { NPP = npp };
+        //         var data = conn.Query<dynamic>(query, param).ToList();
 
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
+        //         return data;
+        //     }
+        //     catch (Exception)
+        //     {
+        //         return null;
+        //     }
+        //     finally
+        //     {
+        //         conn.Dispose();
+        //     }
+        // }
 
         public dynamic GetListKelasMahasiswa(string npm)
         {
@@ -389,62 +389,62 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        public dynamic GetAllListKelasMahasiswa(string npm)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.siatma_uajy);
+        // public dynamic GetAllListKelasMahasiswa(string npm)
+        // {
+        //     SqlConnection conn = new SqlConnection();
+        //     try
+        //     {
+        //         conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
-                string query = @"SELECT
-									kls.ID_KELAS,
-		                            kls.NAMA_MK,
-									kls.KELAS,
-									d1.NPP AS NPP_DOSEN1,
-									d1.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN1,
-		                            h1.HARI AS HARI1,
-		                            s1.SESI AS SESI1,
-									kls.SKS,
-									r.RUANG,
-                                    pdsn.PERTEMUAN_KE,
-		                            b.PROXIMITY_UUID,
-		                            b.NAMA_DEVICE,
-                                    b.JARAK_MIN_DEC,
-                                    b.MAJOR,
-                                    b.MINOR,
-									kls.KAPASITAS_KELAS,
-                                    CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 106) AS TGL_MASUK_SEHARUSNYA,
-									CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 106) AS TGL_KELUAR_SEHARUSNYA,
-									CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
-									CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
-                                    pdsn.IS_BUKA_PRESENSI,
-                                    CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
-                              FROM  TBL_KELAS kls
-	                            JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
-								JOIN TBL_KRS krs ON kls.ID_KELAS = krs.ID_KELAS
-								JOIN MST_MHS_AKTIF mhs ON krs.NPM = mhs.NPM
-	                            FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
-	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
-	                            FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
-	                            FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
-                                FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
-                              WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL
-                              ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
+        //         string query = @"SELECT
+		// 							kls.ID_KELAS,
+		//                             kls.NAMA_MK,
+		// 							kls.KELAS,
+		// 							d1.NPP AS NPP_DOSEN1,
+		// 							d1.NAMA_DOSEN_LENGKAP AS NAMA_DOSEN1,
+		//                             h1.HARI AS HARI1,
+		//                             s1.SESI AS SESI1,
+		// 							kls.SKS,
+		// 							r.RUANG,
+        //                             pdsn.PERTEMUAN_KE,
+		//                             b.PROXIMITY_UUID,
+		//                             b.NAMA_DEVICE,
+        //                             b.JARAK_MIN_DEC,
+        //                             b.MAJOR,
+        //                             b.MINOR,
+		// 							kls.KAPASITAS_KELAS,
+        //                             CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 106) AS TGL_MASUK_SEHARUSNYA,
+		// 							CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 106) AS TGL_KELUAR_SEHARUSNYA,
+		// 							CONVERT(varchar, pdsn.JAM_MASUK_SEHARUSNYA, 8) AS JAM_MASUK_SEHARUSNYA,
+		// 							CONVERT(varchar, pdsn.JAM_KELUAR_SEHARUSNYA, 8) AS JAM_KELUAR_SEHARUSNYA,
+        //                             pdsn.IS_BUKA_PRESENSI,
+        //                             CONVERT(varchar, CURRENT_TIMESTAMP, 21) AS TGL_JAM_SEKARANG
+        //                       FROM  TBL_KELAS kls
+	    //                         JOIN MST_RUANG r ON kls.RUANG1 = r.RUANG
+		// 						JOIN TBL_KRS krs ON kls.ID_KELAS = krs.ID_KELAS
+		// 						JOIN MST_MHS_AKTIF mhs ON krs.NPM = mhs.NPM
+	    //                         FULL OUTER JOIN REF_HARI h1 ON kls.ID_HARI1 = h1.ID_HARI
+	    //                         FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
+	    //                         FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
+	    //                         FULL OUTER JOIN SIATMAX_121212.dbo.REF_BEACON b ON r.ID_BEACON = b.ID_BEACON
+        //                         FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
+        //                       WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL
+        //                       ORDER BY IS_BUKA_PRESENSI DESC, pdsn.PERTEMUAN_KE ASC, kls.KELAS ASC";
 
-                var param = new { NPM = npm };
-                var data = conn.Query<dynamic>(query, param).ToList();
+        //         var param = new { NPM = npm };
+        //         var data = conn.Query<dynamic>(query, param).ToList();
 
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
+        //         return data;
+        //     }
+        //     catch (Exception)
+        //     {
+        //         return null;
+        //     }
+        //     finally
+        //     {
+        //         conn.Dispose();
+        //     }
+        // }
 
         public dynamic DosenBukaPresensi(int idkelas, int bukapresensi, int pertemuan)
         {
@@ -705,7 +705,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
                                 SELECT @idkelasfakultas, krs.NPM, @pertemuan, 'A'
                                 FROM SIATMA_UAJY.dbo.TBL_KRS krs
-                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS WHERE ID_KELAS = @idkelasfakultas and PERTEMUAN_KE = @pertemuan)";
+                                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT NPM FROM TBL_PRESENSI_MHS pmhs WHERE pmhs.NPM = krs.npm and pmhs.ID_KELAS = @idkelasfakultas and pmhs.PERTEMUAN_KE = @pertemuan)";
 
                 var param = new { IDKELAS = idkelas, IDKELASFAKULTAS = idkelasfakultas, PERTEMUAN = pertemuan };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
@@ -978,6 +978,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             try
             {
                 conn = new SqlConnection(DBKoneksi.siatmax_121212);
+                Console.WriteLine(" Mulai Query : {0:HH:mm:ss tt}", DateTime.Now);
 
                 string query = @"UPDATE TBL_PRESENSI_DOSEN
                                 SET JAM_KELUAR = CURRENT_TIMESTAMP,
@@ -985,8 +986,13 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                                 MATERI = @materi
                                 WHERE ID_Kelas = @idkelas AND PERTEMUAN_KE = @pertemuan";
 
+                Console.WriteLine(" Akhir Query : {0:HH:mm:ss tt}", DateTime.Now);
+
                 var param = new { KETERANGAN = keterangan, MATERI = materi, IDKELAS = idkelas, PERTEMUAN = pertemuan };
+                Console.WriteLine(" Memulai Memasukan Data : {0:HH:mm:ss tt}", DateTime.Now);
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
+
+                Console.WriteLine(" Akhir Memasukan Data : {0:HH:mm:ss tt}", DateTime.Now);
 
                 return data;
             }
