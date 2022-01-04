@@ -18,6 +18,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
+
         public OutPutApi RuangBeacon()
         {
 
@@ -36,6 +37,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Menambahkan Data Beacon Ke Server
         public OutPutApi TambahBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
             var data = dao.TambahBeacon(uuid, nama_device, jarak_min, major, minor);
@@ -45,6 +47,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Tampil Data Beacon
         public OutPutApi ListBeacon()
         {
             var data = dao.GetListBeacon();
@@ -61,21 +64,13 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Ubah Data Beacon
         public OutPutApi UpdateBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
             var data = dao.UpdateBeacon(uuid, nama_device, jarak_min, major, minor);
             
             output.data = data; 
             
-            return output;
-        }
-
-        public OutPutApi DeleteBeacon(string uuid, int status)
-        {
-            var data = dao.DeleteBeacon(uuid, status);
-           
-            output.data = data;
-           
             return output;
         }
 
@@ -95,6 +90,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Tampil Ruangan Yang Terpasang Beacon
         public OutPutApi ListRuangan()
         {
             var data = dao.GetListRuangan();
@@ -112,6 +108,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Tampil Yang Terpasang Beacon Dengan Tambahan Atribut
         public OutPutApi ListDetailRuangan()
         {
             var data = dao.GetListDetailRuangan();
@@ -129,6 +126,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Mengubah Beacon Pada Ruangan
         public OutPutApi UpdateRuangBeacon(string ruang, string nama_device)
         {
             var data = dao.UpdateRuangBeacon(ruang, nama_device);

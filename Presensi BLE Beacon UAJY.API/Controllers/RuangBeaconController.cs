@@ -33,6 +33,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Menambahkan Data Beacon Ke Server
         [AllowAnonymous]
         [HttpPost("Tambah")]
         public ActionResult TambahBcn([FromForm] UserTambahBeacon utb)
@@ -52,6 +53,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Tampil Data Beacon
         [AllowAnonymous]
         [HttpGet("Tampil")]
         public ActionResult ListBcn()
@@ -69,6 +71,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Ubah Data Beacon
         [AllowAnonymous]
         [HttpPut("Ubah")]
         public ActionResult UpdateBcn([FromForm] UserUpdateBeacon uub)
@@ -103,6 +106,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Tampil Ruangan Yang Terpasang Beacon
         [AllowAnonymous]
         [HttpGet("TampilRuangan")]
         public ActionResult ListRngn()
@@ -119,6 +123,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Tampil Yang Terpasang Beacon Dengan Tambahan Atribut
         [AllowAnonymous]
         [HttpGet("TampilDetailRuangan")]
         public ActionResult ListDetailRngn()
@@ -135,6 +140,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Mengubah Beacon Pada Ruangan
         [AllowAnonymous]
         [HttpPut("UbahRuangBeacon")]
         public ActionResult UpdateRuangBcn([FromForm] UserUpdateRuangBeacon uurb)

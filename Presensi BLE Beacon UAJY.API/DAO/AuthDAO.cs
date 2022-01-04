@@ -7,6 +7,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 {
     public class AuthDAO
     {
+
+        // Login Mahasiswa
         public dynamic GetLoginMhs(string npm)
         {
             SqlConnection conn = new SqlConnection();
@@ -36,6 +38,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Mendapatkan Profil Mahasiswa
         public dynamic GetProfileMhs(string npm)
         {
             SqlConnection conn = new SqlConnection();
@@ -46,7 +49,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 string query = @"SELECT TOP (1)
 	                                m.NPM,
 	                                m.NAMA_MHS,
-	                                m.ALAMAT,
 	                                f.FAKULTAS,
 	                                p.PRODI
                                 FROM MST_MHS_AKTIF m
@@ -69,6 +71,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Login Dosen
         public dynamic GetLoginDsn(string npp)
         {
             SqlConnection conn = new SqlConnection();
@@ -99,6 +102,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Mendapatkan Profil Dosen
         public dynamic GetProfileDsn(string npp)
         {
             SqlConnection conn = new SqlConnection();
@@ -132,6 +136,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+
+        // Login Admin
         public dynamic GetLoginAdm(string npp)
         {
             SqlConnection conn = new SqlConnection();
@@ -159,6 +165,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Mendapatkan Profil Admin
         public dynamic GetProfileAdm(string npp)
         {
             SqlConnection conn = new SqlConnection();
@@ -167,8 +174,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn = new SqlConnection(DBKoneksi.siatmax_121212);
                  string query = @"SELECT TOP (1) 
                                     NPP,
-                                    NAMA_LENGKAP_GELAR,
-                                    PASSWORD
+                                    NAMA_LENGKAP_GELAR
                                 FROM simka.MST_KARYAWAN
                                 WHERE (NPP = @npp)";
 

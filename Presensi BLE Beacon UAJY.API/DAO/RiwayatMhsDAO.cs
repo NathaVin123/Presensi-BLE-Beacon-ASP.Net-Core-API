@@ -10,7 +10,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 {
     public class RiwayatMhsDAO
     {
-        public dynamic GetRiwayatMhs(string npm)
+		// Riwayat Kelas Mahasiswa
+		public dynamic GetRiwayatMhs(string npm)
         {
             SqlConnection conn = new SqlConnection();
             try
@@ -90,8 +91,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-
-        public dynamic GetRiwayatDsn(string npp)
+		// Riwayat Kelas Dosen
+		public dynamic GetRiwayatDsn(string npp)
         {
             SqlConnection conn = new SqlConnection();
             try

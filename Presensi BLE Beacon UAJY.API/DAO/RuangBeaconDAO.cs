@@ -46,6 +46,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Menambahkan Data Beacon Ke Server
         public dynamic TambahBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
             OutPutApi output = new OutPutApi();
@@ -74,6 +75,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Tampil Data Beacon
         public dynamic GetListBeacon()
         {
             SqlConnection conn = new SqlConnection();
@@ -99,6 +101,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Ubah Data Beacon
         public dynamic UpdateBeacon(string uuid, string nama_device, float jarak_min, int major, int minor)
         {
             SqlConnection conn = new SqlConnection();
@@ -110,31 +113,6 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                                 WHERE PROXIMITY_UUID = @uuid";
 
                 var param = new { UUID = uuid, NAMA_DEVICE = nama_device, JARAK_MIN = jarak_min, MAJOR = major, MINOR = minor };
-                var data = conn.QuerySingleOrDefault<dynamic>(query, param);
-
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            finally
-            {
-                conn.Dispose();
-            }
-        }
-
-        public dynamic DeleteBeacon(string uuid, int status)
-        {
-            SqlConnection conn = new SqlConnection();
-            try
-            {
-                conn = new SqlConnection(DBKoneksi.siatma_uajy);
-
-                string query = @"UPDATE SIATMAX_121212.dbo.REF_BEACON SET STATUS = @status
-                                WHERE PROXIMITY_UUID = @uuid";
-
-                var param = new { UUID = uuid, STATUS = status };
                 var data = conn.QuerySingleOrDefault<dynamic>(query, param);
 
                 return data;
@@ -177,6 +155,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Tampil Ruangan Yang Terpasang Beacon
         public dynamic GetListRuangan()
         {
             SqlConnection conn = new SqlConnection();
@@ -206,8 +185,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
-        
-
+        // Tampil Yang Terpasang Beacon Dengan Tambahan Atribut
         public dynamic GetListDetailRuangan()
         {
             SqlConnection conn = new SqlConnection();
@@ -234,6 +212,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             }
         }
 
+        // Mengubah Beacon Pada Ruangan
         public dynamic UpdateRuangBeacon(string ruang, string nama_device)
         {
             SqlConnection conn = new SqlConnection();

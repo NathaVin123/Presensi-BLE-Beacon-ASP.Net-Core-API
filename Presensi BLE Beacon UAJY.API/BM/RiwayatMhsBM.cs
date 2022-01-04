@@ -14,6 +14,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
+        // Riwayat Kelas Mahasiswa
         public OutPutApi RiwayatMhs(string npm)
         {
             var data = dao.GetRiwayatMhs(npm);
@@ -23,6 +24,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Riwayat Kelas
         public OutPutApi RiwayatDsn(string npp)
         {
             var data = dao.GetRiwayatDsn(npp);

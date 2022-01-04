@@ -20,6 +20,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
+        // Login Mahasiswa
         public OutPutApi LoginMhs(string npm, string password)
         {
             var ul = dao.GetLoginMhs(npm);
@@ -71,8 +72,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
-        
-
+        // Login Dosen
         public OutPutApi LoginDsn(string npp, string password)
         {
             var ul = dao.GetLoginDsn(npp);            if (ul != null)
@@ -124,6 +124,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Login Admin
         public OutPutApi LoginAdm(string npp, string password)
         {
             var ul = dao.GetLoginAdm(npp);
@@ -168,6 +169,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Fungsi Untuk Cek Password Yang Terenkripsi
         private bool cekpassword(string password, string passwordDatabase)
         {
             Encoding enc = Encoding.GetEncoding(1252);

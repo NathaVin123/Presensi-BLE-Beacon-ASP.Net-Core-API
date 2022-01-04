@@ -10,6 +10,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 {
     public class JadwalMhsDAO
     {
+        // Jadwal Mahasiswa
         public dynamic GetJadwalMhs(string npm)
         {
             SqlConnection conn = new SqlConnection();
@@ -60,6 +61,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
                 conn.Dispose();
             }
         }
+
+        // Jadwal Dosen
         public dynamic GetJadwalDsn(string npp)
         {
             SqlConnection conn = new SqlConnection();

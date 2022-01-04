@@ -18,6 +18,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             bm = new RiwayatMhsBM();
         }
 
+        // Riwayat Kelas Mahasiswa
+
         [AllowAnonymous]
         [HttpPost("PostGetAll")]
         public ActionResult RiwayatMhs([FromForm] UserRiwayatMhs urm)
@@ -33,6 +35,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Riwayat Kelas Dosen
 
         [AllowAnonymous]
         [HttpPost("PostGetAllDosen")]

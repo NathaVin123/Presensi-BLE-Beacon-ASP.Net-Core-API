@@ -18,6 +18,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             bm = new JadwalMhsBM();
         }
 
+        // Jadwal Mahasiswa
+
         [AllowAnonymous]
         [HttpPost("PostGetAll")]
         public ActionResult JadwalMhs([FromForm] UserJadwalMhs ujm)
@@ -33,6 +35,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Jadwal Dosen
 
         [AllowAnonymous]
         [HttpPost("PostGetAllDosen")]

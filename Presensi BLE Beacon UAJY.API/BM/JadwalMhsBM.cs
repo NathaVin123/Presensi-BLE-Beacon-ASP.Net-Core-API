@@ -14,6 +14,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             output = new OutPutApi();
         }
 
+        // Jadwal Mahasiswa
         public OutPutApi JadwalMhs(string npm)
         {
             var data = dao.GetJadwalMhs(npm);
@@ -23,6 +24,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
             return output;
         }
 
+        // Jadwal Dosen
         public OutPutApi JadwalDsn(string npp)
         {
             var data = dao.GetJadwalDsn(npp);

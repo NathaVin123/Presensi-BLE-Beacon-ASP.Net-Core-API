@@ -18,6 +18,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             bm = new AuthBM();
         }
 
+
+        // Login Mahasiswa
         [AllowAnonymous]
         [HttpPost("LoginMhs")]
         public ActionResult LoginMhs([FromForm] UserLoginMhs ul)
@@ -34,6 +36,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Login Dosen
         [AllowAnonymous]
         [HttpPost("LoginDsn")]
         public ActionResult LoginDsn([FromForm] UserLoginDsn ul)
@@ -50,6 +53,7 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
             }
         }
 
+        // Login Admin
         [AllowAnonymous]
         [HttpPost("LoginAdm")]
         public ActionResult LoginAdm([FromForm] UserLoginAdm ul)
