@@ -443,6 +443,18 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             {
                 conn = new SqlConnection(DBKoneksi.siatma_uajy);
 
+        //        string query = @"INSERT INTO TBL_PRESENSI_MHS
+        //                        (ID_PRESENSI_MHS,
+        //                        ID_Kelas,
+        //                        NPM,
+        //                        PERTEMUAN_KE,
+        //                        TGL_IN)
+								//VALUES
+        //                        (@idkelas,
+        //                        @npm,
+        //                        @pertemuan,
+        //                        CURRENT_TIMESTAMP)";
+
                 string query = @"INSERT INTO TBL_PRESENSI_MHS
                                 (ID_PRESENSI_MHS,
                                 ID_Kelas,
@@ -1076,6 +1088,11 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
             try
             {
                 conn = new SqlConnection(DBKoneksi.siatma_uajy);
+
+                //string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_PRESENSI_MHS, ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
+                //                SELECT krs.ID_KELAS, krs.NPM, @pertemuan, 'A'
+                //                FROM TBL_KRS krs
+                //                WHERE krs.ID_KELAS = @idkelas AND krs.NPM NOT IN (SELECT pmhs.NPM FROM TBL_PRESENSI_MHS pmhs WHERE pmhs.ID_KELAS = @idkelas and pmhs.NPM = krs.NPM and pmhs.PERTEMUAN_KE = @pertemuan)";
 
                 string query = @"INSERT INTO TBL_PRESENSI_MHS(ID_PRESENSI_MHS, ID_Kelas, NPM, PERTEMUAN_KE, STATUS)
                                 SELECT 99999, krs.ID_KELAS, krs.NPM, @pertemuan, 'A'
