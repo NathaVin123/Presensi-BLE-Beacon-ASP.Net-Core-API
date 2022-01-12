@@ -135,5 +135,15 @@ namespace Presensi_BLE_Beacon_UAJY.API.BM
            
             return output;
         }
+
+        // Lepas Beacon Pada Ruangan
+        public OutPutApi UpdateLepasRuangBeacon(string ruang)
+        {
+            var data = dao.UpdateLepasRuangBeacon(ruang);
+
+            output.data = data;
+
+            return output;
+        }
     }
 }

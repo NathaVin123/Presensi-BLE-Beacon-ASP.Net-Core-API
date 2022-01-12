@@ -166,5 +166,32 @@ namespace Presensi_BLE_Beacon_UAJY.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // Lepas Beacom Pada Ruangan
+        [AllowAnonymous]
+        [HttpPut("LepasRuangBeacon")]
+        public ActionResult UpdateLepasRuangBcn([FromForm] UserUpdateLepasRuangBeacon uurb)
+        {
+            OutPutApi output = new OutPutApi();
+            try
+            {
+                if (uurb.RUANG != null)
+                {
+                    var data = bm.UpdateLepasRuangBeacon(uurb.RUANG);
+                    output.data = "Data Ruangan Berhasil Diubah";
+                    return Ok(output);
+                }
+                else
+                {
+                    output.error = "Data Ruangan Gagal Diubah";
+                    return Ok(output);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
