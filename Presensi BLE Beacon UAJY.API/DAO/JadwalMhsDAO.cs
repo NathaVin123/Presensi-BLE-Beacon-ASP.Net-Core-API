@@ -43,10 +43,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
 	                            FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
                                 FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
-                              WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(WEEK,-1,pdsn.JAM_MASUK_SEHARUSNYA) 
-                              ORDER BY CONVERT(date,JAM_MASUK_SEHARUSNYA) DESC";
-
-                // AND CURRENT_TIMESTAMP<JAM_MASUK_SEHARUSNYA
+                              WHERE mhs.NPM = @npm AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP<JAM_MASUK_SEHARUSNYA AND CURRENT_TIMESTAMP > DATEADD(WEEK,+1,pdsn.JAM_MASUK_SEHARUSNYA) 
+                              ORDER BY CONVERT(date,JAM_MASUK_SEHARUSNYA) ASC";
 
                 var param = new { NPM = npm};
                 var data = conn.Query<dynamic>(query, param).ToList();
@@ -94,10 +92,8 @@ namespace Presensi_BLE_Beacon_UAJY.API.DAO
 	                            FULL OUTER JOIN REF_SESI s1 ON kls.ID_SESI_KULIAH1 = s1.ID_SESI
 	                            FULL OUTER JOIN MST_DOSEN d1 ON kls.NPP_DOSEN1 = d1.NPP
 								FULL OUTER JOIN SIATMAX_121212.dbo.TBL_PRESENSI_DOSEN pdsn ON kls.ID_KELAS = pdsn.ID_Kelas
-                              WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP > DATEADD(WEEK,-1,pdsn.JAM_MASUK_SEHARUSNYA) 
-                              ORDER BY CONVERT(date,JAM_MASUK_SEHARUSNYA) DESC";
-
-                // AND CURRENT_TIMESTAMP<JAM_MASUK_SEHARUSNYA
+                              WHERE d1.NPP = @npp AND pdsn.PERTEMUAN_KE IS NOT NULL AND CURRENT_TIMESTAMP<JAM_MASUK_SEHARUSNYA AND CURRENT_TIMESTAMP > DATEADD(WEEK,+1,pdsn.JAM_MASUK_SEHARUSNYA) 
+                              ORDER BY CONVERT(date,JAM_MASUK_SEHARUSNYA) ASC";
 
                 var param = new { NPP = npp};
                 var data = conn.Query<dynamic>(query, param).ToList();
